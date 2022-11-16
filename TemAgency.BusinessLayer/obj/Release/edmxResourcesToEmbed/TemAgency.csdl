@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TEMAGENCYModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="Ntl_Projects" Relationship="Self.FK_Ntl_Projects_AspNetUsers" FromRole="AspNetUsers" ToRole="Ntl_Projects" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+    <NavigationProperty Name="Ntl_ProjectsAgreement" Relationship="TEMAGENCYModel.FK_Ntl_ProjectsAgreement_AspNetUsers" FromRole="AspNetUsers" ToRole="Ntl_ProjectsAgreement" />
+  </EntityType>
+  <EntityType Name="Ntl_Brand">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Ntl_ProjectAgreementDocs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectAgreementId" Type="Int32" />
+    <Property Name="DocumentName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DocumentContentType" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DocumentIcon" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="DocumentDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Ntl_ProjectsAgreement" Relationship="TEMAGENCYModel.FK_Ntl_ProjectAgreementDocs_Ntl_ProjectsAgreement" FromRole="Ntl_ProjectAgreementDocs" ToRole="Ntl_ProjectsAgreement" />
+  </EntityType>
+  <EntityType Name="Ntl_ProjectDocs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="DocumentName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DocumentContentType" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DocumentIcon" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Ntl_Projects" Relationship="Self.FK_Ntl_ProjectDocs_Ntl_Projects" FromRole="Ntl_ProjectDocs" ToRole="Ntl_Projects" />
+  </EntityType>
+  <EntityType Name="Ntl_ProjectLines">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="UnitPrice" Type="Double" />
+    <Property Name="VatRate" Type="Int32" />
+    <Property Name="Total" Type="Double" />
+    <Property Name="VatTotal" Type="Double" />
+    <Property Name="NetTotal" Type="Double" />
+    <Property Name="Platform" Type="Int32" />
+    <Property Name="Live" Type="Boolean" />
+    <Property Name="IsAgency" Type="Boolean" />
+    <Property Name="Agency" Type="Int32" />
+    <Property Name="Influencer" Type="Int32" />
+    <Property Name="DocumentType" Type="Int32" />
+    <Property Name="BuyPrice" Type="Double" />
+    <NavigationProperty Name="Ntl_Projects" Relationship="Self.FK_Ntl_ProjectLines_Ntl_Projects" FromRole="Ntl_ProjectLines" ToRole="Ntl_Projects" />
+    <NavigationProperty Name="Ntl_ProjectLineSteps" Relationship="Self.FK_Ntl_ProjectLineSteps_Ntl_ProjectLines" FromRole="Ntl_ProjectLines" ToRole="Ntl_ProjectLineSteps" />
+  </EntityType>
+  <EntityType Name="Ntl_ProjectLineSteps">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectLineId" Type="Int32" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="StepDate" Type="DateTime" Precision="3" />
+    <Property Name="Explanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Double" />
+    <NavigationProperty Name="Ntl_ProjectLines" Relationship="Self.FK_Ntl_ProjectLineSteps_Ntl_ProjectLines" FromRole="Ntl_ProjectLineSteps" ToRole="Ntl_ProjectLines" />
+  </EntityType>
+  <EntityType Name="Ntl_Projects">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectDate" Type="DateTime" Precision="3" />
+    <Property Name="Company" Type="Int32" />
+    <Property Name="Origin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Brand" Type="Int32" />
+    <Property Name="Sector" Type="Int32" />
+    <Property Name="SubSector" Type="Int32" />
+    <Property Name="Agency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerName" Type="Int32" />
+    <Property Name="AgencyId" Type="Int32" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_Ntl_Projects_AspNetUsers" FromRole="Ntl_Projects" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Ntl_ProjectDocs" Relationship="Self.FK_Ntl_ProjectDocs_Ntl_Projects" FromRole="Ntl_Projects" ToRole="Ntl_ProjectDocs" />
+    <NavigationProperty Name="Ntl_ProjectLines" Relationship="Self.FK_Ntl_ProjectLines_Ntl_Projects" FromRole="Ntl_Projects" ToRole="Ntl_ProjectLines" />
+  </EntityType>
+  <EntityType Name="Ntl_Sector">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Auxcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ntl_SubSector" Relationship="Self.FK_Ntl_SubSector_Ntl_Sector" FromRole="Ntl_Sector" ToRole="Ntl_SubSector" />
+  </EntityType>
+  <EntityType Name="Ntl_SubSector">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SectorId" Type="Int32" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Auxcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ntl_Sector" Relationship="Self.FK_Ntl_SubSector_Ntl_Sector" FromRole="Ntl_SubSector" ToRole="Ntl_Sector" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ntl_Projects_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="Ntl_Projects" Type="Self.Ntl_Projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ntl_Projects">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ntl_ProjectDocs_Ntl_Projects">
+    <End Role="Ntl_Projects" Type="Self.Ntl_Projects" Multiplicity="0..1" />
+    <End Role="Ntl_ProjectDocs" Type="Self.Ntl_ProjectDocs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ntl_Projects">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ntl_ProjectDocs">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ntl_ProjectLines_Ntl_Projects">
+    <End Role="Ntl_Projects" Type="Self.Ntl_Projects" Multiplicity="0..1" />
+    <End Role="Ntl_ProjectLines" Type="Self.Ntl_ProjectLines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ntl_Projects">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ntl_ProjectLines">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ntl_ProjectLineSteps_Ntl_ProjectLines">
+    <End Role="Ntl_ProjectLines" Type="Self.Ntl_ProjectLines" Multiplicity="0..1" />
+    <End Role="Ntl_ProjectLineSteps" Type="Self.Ntl_ProjectLineSteps" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ntl_ProjectLines">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ntl_ProjectLineSteps">
+        <PropertyRef Name="ProjectLineId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ntl_SubSector_Ntl_Sector">
+    <End Role="Ntl_Sector" Type="Self.Ntl_Sector" Multiplicity="0..1" />
+    <End Role="Ntl_SubSector" Type="Self.Ntl_SubSector" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ntl_Sector">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ntl_SubSector">
+        <PropertyRef Name="SectorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="TEMAGENCYEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+    <EntitySet Name="Ntl_Brand" EntityType="Self.Ntl_Brand" />
+    <EntitySet Name="Ntl_ProjectAgreementDocs" EntityType="Self.Ntl_ProjectAgreementDocs" />
+    <EntitySet Name="Ntl_ProjectDocs" EntityType="Self.Ntl_ProjectDocs" />
+    <EntitySet Name="Ntl_ProjectLines" EntityType="Self.Ntl_ProjectLines" />
+    <EntitySet Name="Ntl_ProjectLineSteps" EntityType="Self.Ntl_ProjectLineSteps" />
+    <EntitySet Name="Ntl_Projects" EntityType="Self.Ntl_Projects" />
+    <EntitySet Name="Ntl_Sector" EntityType="Self.Ntl_Sector" />
+    <EntitySet Name="Ntl_SubSector" EntityType="Self.Ntl_SubSector" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ntl_Projects_AspNetUsers" Association="Self.FK_Ntl_Projects_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Ntl_Projects" EntitySet="Ntl_Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ntl_ProjectDocs_Ntl_Projects" Association="Self.FK_Ntl_ProjectDocs_Ntl_Projects">
+      <End Role="Ntl_Projects" EntitySet="Ntl_Projects" />
+      <End Role="Ntl_ProjectDocs" EntitySet="Ntl_ProjectDocs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ntl_ProjectLines_Ntl_Projects" Association="Self.FK_Ntl_ProjectLines_Ntl_Projects">
+      <End Role="Ntl_Projects" EntitySet="Ntl_Projects" />
+      <End Role="Ntl_ProjectLines" EntitySet="Ntl_ProjectLines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ntl_ProjectLineSteps_Ntl_ProjectLines" Association="Self.FK_Ntl_ProjectLineSteps_Ntl_ProjectLines">
+      <End Role="Ntl_ProjectLines" EntitySet="Ntl_ProjectLines" />
+      <End Role="Ntl_ProjectLineSteps" EntitySet="Ntl_ProjectLineSteps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ntl_SubSector_Ntl_Sector" Association="Self.FK_Ntl_SubSector_Ntl_Sector">
+      <End Role="Ntl_Sector" EntitySet="Ntl_Sector" />
+      <End Role="Ntl_SubSector" EntitySet="Ntl_SubSector" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <EntitySet Name="Ntl_ProjectsAgreement" EntityType="TEMAGENCYModel.Ntl_ProjectsAgreement" />
+    <AssociationSet Name="FK_Ntl_ProjectsAgreement_AspNetUsers" Association="TEMAGENCYModel.FK_Ntl_ProjectsAgreement_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Ntl_ProjectsAgreement" EntitySet="Ntl_ProjectsAgreement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ntl_ProjectAgreementDocs_Ntl_ProjectsAgreement" Association="TEMAGENCYModel.FK_Ntl_ProjectAgreementDocs_Ntl_ProjectsAgreement">
+      <End Role="Ntl_ProjectsAgreement" EntitySet="Ntl_ProjectsAgreement" />
+      <End Role="Ntl_ProjectAgreementDocs" EntitySet="Ntl_ProjectAgreementDocs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Ntl_ProjectsAgreement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="AgreementDate" Type="DateTime" Precision="3" />
+    <Property Name="Company" Type="Int32" />
+    <Property Name="Explanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LExplanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FExplanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="StampTax" Type="Boolean" />
+    <NavigationProperty Name="AspNetUsers" Relationship="TEMAGENCYModel.FK_Ntl_ProjectsAgreement_AspNetUsers" FromRole="Ntl_ProjectsAgreement" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Ntl_ProjectAgreementDocs" Relationship="TEMAGENCYModel.FK_Ntl_ProjectAgreementDocs_Ntl_ProjectsAgreement" FromRole="Ntl_ProjectsAgreement" ToRole="Ntl_ProjectAgreementDocs" />
+  </EntityType>
+  <Association Name="FK_Ntl_ProjectsAgreement_AspNetUsers">
+    <End Type="TEMAGENCYModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+    <End Type="TEMAGENCYModel.Ntl_ProjectsAgreement" Role="Ntl_ProjectsAgreement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ntl_ProjectsAgreement">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ntl_ProjectAgreementDocs_Ntl_ProjectsAgreement">
+    <End Type="TEMAGENCYModel.Ntl_ProjectsAgreement" Role="Ntl_ProjectsAgreement" Multiplicity="0..1" />
+    <End Type="TEMAGENCYModel.Ntl_ProjectAgreementDocs" Role="Ntl_ProjectAgreementDocs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ntl_ProjectsAgreement">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ntl_ProjectAgreementDocs">
+        <PropertyRef Name="ProjectAgreementId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

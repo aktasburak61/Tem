@@ -1,0 +1,85 @@
+﻿@model User
+@{
+    ViewBag.Title = "Profil Düzenleme";
+}
+@using (Html.BeginForm("EditUser", "User", FormMethod.Post, new { @class = "form-horizantal" }))
+{
+    @Html.HiddenFor(model => Model.Id)
+    @Html.HiddenFor(model => Model.UserName)
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center">
+            <br />
+            <br />
+            <h5><b>PROFİL DÜZENLEME</b></h5>
+            <br />
+            <label class="text-danger">@Html.Raw(ViewBag.ErrorEdit)</label>
+            <br />
+            <br />
+        </div>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <div class="row" style="margin-bottom:5px">
+                    <div class="col-lg-3">
+                        <label class="login2 float-end"> Kullanıcı Adı</label>
+                    </div>
+                    <div class="col-lg-9">
+                        @Html.TextBoxFor(model => model.UserName, new { @type = "text", @class = "form-control", @style = "font-weight: bold;font-size:12px !Important", @autocomplete = "off", @disabled = "disabled" })
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:5px">
+                    <div class="col-lg-3">
+                        <label class="login2 float-end"> E-Posta</label>
+                    </div>
+                    <div class="col-lg-9">
+                        @Html.TextBoxFor(model => model.Email, new { @type = "email", @class = "form-control", @style = "font-weight: bold;font-size:12px !Important", @autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:5px">
+                    <div class="col-lg-3">
+                        <label class="login2 float-end"> Adı Soyadı</label>
+                    </div>
+                    <div class="col-lg-9">
+                        @Html.TextBoxFor(model => model.FullName, new { @type = "text", @class = "form-control", @style = "font-weight: bold;font-size:12px !Important;", @autocomplete = "off" })
+                    </div>
+                </div>
+                @if (User.IsInRole("Yönetici"))
+                {
+                    <div class="row" style="margin-bottom:5px">
+                        <div class="col-lg-3">
+                            <label class="login2 float-end"> Kullanıcı Türü</label>
+                        </div>
+                        <div class="col-lg-9">
+                            @Html.DropDownListFor(model => model.UserRoleId, new SelectList(ViewBag.roleList, "Value", "Text", "SEÇİNİZ"), new { @class = "form-control form-select", @style = "font-size:12px !Important;", @autocomplete = "off" })
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="row" style="margin-bottom:5px">
+                        <div class="col-lg-3">
+                            <label class="login2 float-end"> Kullanıcı Türü</label>
+                        </div>
+                        <div class="col-lg-9">
+                            @Html.DropDownListFor(model => model.UserRoleId, new SelectList(ViewBag.roleList, "Value", "Text", "SEÇİNİZ"), new { @class = "form-control form-select", @style = "font-size:12px !Important;", @autocomplete = "off", @disabled = "disabled" })
+                            @Html.HiddenFor(model => model.UserRoleId)
+                        </div>
+                    </div>
+                }
+                <div class="row" style="margin-bottom:5px">
+                    <div class="col-lg-12">
+                        <button type="submit" class="btn btn-success float-end" style="margin:5px"><i class="fa fa-save"></i> Kaydet</button>
+                        @if (User.IsInRole("Yönetici"))
+                        {
+                            <a href="/User/Index" class="btn btn-warning float-end" style="margin:5px"><i class="fa fa-backward"></i> Vazgeç</a>
+                        }
+                        else
+                        {
+                            <a href="/Home/Index" class="btn btn-warning float-end" style="margin:5px"><i class="fa fa-backward"></i> Vazgeç</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

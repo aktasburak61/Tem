@@ -1,0 +1,38 @@
+﻿@model IQueryable<Projects>
+@{
+    ViewBag.Title = "Operasyon Sayfası";
+}
+<div class="pagetitle">
+    <div class="col-lg-12">
+        <h1>Projeler</h1>
+        <br />
+        <br />
+    </div>
+</div>
+<section class="section dashboard">
+    <div class="row">
+        @(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        columns.Add(model => model.ProjectCode).Titled("Proje Kodu");
+        columns.Add(model => model.ProjectName).Titled("Proje Adı");
+        columns.Add(model => model.ProjectDate).Titled("Proje Tarihi").Formatted("{0:dd.MM.yyyy}");
+        columns.Add(model => model.User).Titled("Proje Sorumlusu");
+        columns.Add(model => model.Company).Titled("Firma");
+        columns.Add(model => model.CustomerName).Titled("Müşteri Adı");
+        columns.Add(model => model.StatusStr).Titled("Durumu");
+        columns.Add(model => "<a class='btn btn-warning pull-right' href='" + @Url.Action("ProjectOperations", "Projects", new { number = model.Id }) + "')><i class='fa fa-edit'></i> Detay</a>").Encoded(false);
+    })
+    .Empty("Hiçbir Veri Bulunamadı")
+    .Filterable()
+    .Sortable()
+    .Pageable(pager =>
+    {
+        pager.PageSizes = new Dictionary<int, string> { { 25, "25" }, { 50, "50" }, { 100, "100" } };
+        pager.ShowPageSizes = true;
+        pager.RowsPerPage = 50;
+    })
+)
+    </div>
+</section>

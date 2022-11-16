@@ -1,0 +1,179 @@
+﻿@model ProjectsAgreement
+@{
+    ViewBag.Title = "Sözleşmeli Proje";
+}
+<div class="pagetitle">
+    <h1>Sözleşmeli Proje</h1>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                @if (User.IsInRole("Finans"))
+                {
+                    if (Model.Status == 4)
+                    {
+                        <div class="col-lg-8">
+                        </div>
+                        <div class="col-lg-4">
+                            <button class="btn btn-success float-end" onclick="FinanceAcceptProject(@Model.Id)"><i class="fa fa-save"></i> Onayla</button>
+                            <button class="btn btn-danger float-end" style="margin-right:10px" onclick="FinanceCancelProject(@Model.Id)"><i class="fa fa-cancel"></i> Reddet</button>
+                        </div>
+                    }
+                    else
+                    {
+                        <label style="width:100%;text-align:center;font-size:20px;background-color:orange;color:white" class="label col-lg-12"> Bu projeyle alakalı daha önce işlem yapılmıştır. </label>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<section class="section dashboard">
+    <div class="row" style="border:2px solid gray">
+        <div class="col-lg-12">
+            <div class="row table-responsive">
+                <div class="col-lg-12" style="margin:5px 0px 5px 0px">
+                    <table class="table">
+                        <tr>
+                            @Html.HiddenFor(x => x.Id)
+                            @Html.HiddenFor(x => x.Status)
+                            <th style="width:10%">Müşteri</th>
+                            <td style="width:35%">
+                                @Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                            </td>
+                            <td style="width:10%"></td>
+                            <th style="width:10%">Tarih </th>
+                            <td style="width:35%">
+                                @Html.TextBoxFor(model => model.AgreementDate, "{0:dd.MM.yyyy}", new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width:10%">Projeyi Oluşturan</th>
+                            <td style="width:35%">
+                                @Html.TextBoxFor(model => model.User, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                @Html.HiddenFor(model => model.UserId)
+                            </td>
+                            <td style="width:10%"></td>
+                            <th style="width:10%">Durum</th>
+                            <td style="width:35%">
+                                @Html.TextBoxFor(model => model.StatusStr, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width:10%">Firma</th>
+                            <td style="width:35%">
+                                @Html.TextBoxFor(model => model.Company, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                @Html.HiddenFor(model => model.CompanyId)
+                            </td>
+                            <td style="width:10%"></td>
+                            @if (Model.Status == 4)
+                            {
+                                <th style="width:10%">Damga Vergisine Tâbi Mi?</th>
+                                <td style="width:35%">
+                                    @Html.DropDownListFor(model => model.StampTax, new SelectList(ViewBag.Taxes, "Value", "Text"), "Seçiniz", new { @class = "form-control form-select", @style = "font-size:12px!Important" })
+                                </td>
+                            }
+                            else
+                            {
+                                <th style="width:10%">Damga Vergisine Tâbi Mi?</th>
+                                if (Model.StampTax)
+                                {
+                                    <td style="width:35%">
+                                        @Html.TextBox("StampTax", "Evet", new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td style="width:35%">
+                                        @Html.TextBox("StampTax", "Hayır", new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                    </td>
+                                }
+                            }
+                        </tr>
+                        <tr>
+                            <th>Açıklama</th>
+                            <td colspan="8">
+                                @Html.TextAreaFor(model => model.Explanation, new { @class = "form-control", @style = "font-size:12px!Important", @rows = "3", @readonly = "readonly" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Avukat Açıklaması</th>
+                            <td colspan="8">
+                                @Html.TextAreaFor(model => model.LExplanation, new { @class = "form-control", @style = "font-size:12px!Important", @rows = "3", @readonly = "readonly" })
+                            </td>
+                        </tr>
+                        @if (Model.Status == 4)
+                        {
+                            <tr>
+                                <th>Finans Açıklaması</th>
+                                <td colspan="8">
+                                    @Html.TextAreaFor(model => model.FExplanation, new { @class = "form-control", @style = "font-size:12px!Important", @rows = "3", @placeholder = "Açıklama girmek için tıklayınız." })
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <th>Finans Açıklaması</th>
+                                <td colspan="8">
+                                    @Html.TextAreaFor(model => model.FExplanation, new { @class = "form-control", @style = "font-size:12px!Important", @rows = "3", @readonly = "readonly" })
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td colspan="8">
+                                @if (Model.ProjectAgreementDocs.Count > 0)
+                                {
+                                    <h4>Dökümanlar</h4>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Döküman</th>
+                                                <th>Tarih</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var docs in Model.ProjectAgreementDocs.OrderByDescending(x => x.DocumentDate))
+                                            {
+                                                <tr class="clickable-row" title="İndirmek için tıklayınız." data-href="@Url.Action("GetFileProjectsAgreement", "ProjectsAgreement", new { number = @docs.Id })">
+                                                    <td>
+                                                        <img src="data:image/png;base64, @Convert.ToBase64String(@docs.DocumentIcon) " style="height:25px;width:25px;" alt="@docs.DocumentName" />
+                                                        @docs.DocumentName
+                                                    </td>
+                                                    <td>
+                                                        @docs.DocumentDate.ToString("dd.MM.yyyy HH:mm")
+                                                        @Html.HiddenFor(model => docs.DocumentDate)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                }
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+<script>
+    $(document).ready(function () {
+        var b = localStorage.getItem("uploadkey");
+        if (b !== null) {
+            $("#txtUploadResultSuccess").remove();
+            $("#demo-upload").append("<div class='col-lg-12' style='color: green' id='txtUploadResultSuccess'></div>");
+            $("#txtUploadResultSuccess").append("<br/>" + b);
+        }
+        localStorage.removeItem("uploadkey");
+    });
+</script>
+<script>
+    jQuery(document).ready(function ($) {
+        $(".clickable-row").click(function () {
+            window.location = $(this).data("href");
+        });
+    });
+</script>

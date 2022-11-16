@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D829BB48-341B-4B85-990C-8A1831F2C9F8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TemAgency.BusinessLayer</RootNamespace>
+    <AssemblyName>TemAgency.BusinessLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SqlMapper.Common, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SqlMapper.Common.2.0.0\lib\net45\SqlMapper.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AspNetRoles.cs">
+      <DependentUpon>TemAgency.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaims.cs">
+      <DependentUpon>TemAgency.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogins.cs">
+      <DependentUpon>TemAgency.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUsers.cs">
+      <DependentUpon>TemAgency.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer.cs" />
+    <Compile Include="JPlatform.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JPlatform.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JPlatform.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JPlatform.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JPlatform.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JPlatform.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="jP_RestService.cs" />
+    <Compile Include="Models\Agencies.cs" />
+    <Compile Include="Models\Arps.cs" />
+    <Compile Include="Models\Brands.cs" />
+    <Compile Include="Models\DocumentTypes.cs" />
+    <Compile Include="Models\FileUploadResult.cs" />
+    <Compile Include="Models\Firms.cs" />
+    <Compile Include="Models\Influencers.cs" />
+    <Compile Include="Models\jP_Global.cs" />
+    <Compile Include="Models\jP_Order.cs" />
+    <Compile Include="Models\jP_Project.cs" />
+    <Compile Include="Models\Platforms.cs" />
+    <Compile Include="Models\ProjectAgreementDocs.cs" />
+    <Compile Include="Models\ProjectAgreementMM.cs" />
+    <Compile Include="Models\ProjectDocs.cs" />
+    <Compile Include="Models\ProjectLineSteps.cs" />
+    <Compile Include="Models\Projects.cs" />
+    <Compile Include="Models\ProjectLines.cs" />
+    <Compile Include="Models\ProjectsAgreement.cs" />
+    <Compile Include="Models\ProjectStatus.cs" />
+    <Compile Include="Models\Sectors.cs" />
+    <Compile Include="Models\ServiceExps.cs" />
+    <Compile Include="Models\StepStatus.cs" />
+    <Compile Include="Models\SubSectors.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Ntl_Brand.cs">
+      <DependentUpon>TemAgency.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ntl_ProjectAgreementDocs.cs">
+      <DependentUpon>TemAgency.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ntl_ProjectDocs.cs">
+      <DependentUpon>TemAgency.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ntl_ProjectLines.cs">
+      <DependentUpon>TemAgency.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ntl_ProjectLineSteps.cs">
+      <DependentUpon>TemAgency.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ntl_Projects.cs">
+      <DependentUpon>TemAgency.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ntl_ProjectsAgreement.cs">
+      <DependentUpon>TemAgency.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ntl_Sector.cs">
+      <DependentUpon>TemAgency.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ntl_SubSector.cs">
+      <DependentUpon>TemAgency.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectUtil.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="S_ORGUNITS.cs">
+      <DependentUpon>JPlatform.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TemAgency.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TemAgency.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TemAgency.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TemAgency.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TemAgency.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TemAgency.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="U_001_ANLYDIMENSIONS.cs">
+      <DependentUpon>JPlatform.tt</DependentUpon>
+    </Compile>
+    <Compile Include="U_001_ANLYDIMTYPES.cs">
+      <DependentUpon>JPlatform.tt</DependentUpon>
+    </Compile>
+    <Compile Include="U_001_ARPS.cs">
+      <DependentUpon>JPlatform.tt</DependentUpon>
+    </Compile>
+    <Compile Include="U_001_AUXCODES.cs">
+      <DependentUpon>JPlatform.tt</DependentUpon>
+    </Compile>
+    <Compile Include="U_001_ITEMS.cs">
+      <DependentUpon>JPlatform.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="JPlatform.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>JPlatform.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="JPlatform.edmx.diagram">
+      <DependentUpon>JPlatform.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <EntityDeploy Include="TemAgency.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TemAgency.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="TemAgency.edmx.diagram">
+      <DependentUpon>TemAgency.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="JPlatform.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>JPlatform.edmx</DependentUpon>
+      <LastGenOutput>JPlatform.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="JPlatform.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>JPlatform.edmx</DependentUpon>
+      <LastGenOutput>JPlatform.cs</LastGenOutput>
+    </Content>
+    <Content Include="TemAgency.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TemAgency.edmx</DependentUpon>
+      <LastGenOutput>TemAgency.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="TemAgency.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TemAgency.edmx</DependentUpon>
+      <LastGenOutput>TemAgency.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

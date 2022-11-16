@@ -1,0 +1,313 @@
+﻿@model Projects
+@{
+    ViewBag.Title = "Operasyon İşlemleri";
+    int i = 1;
+}
+<div class="pagetitle">
+    <h1>@Model.ProjectCode</h1>
+    <br />
+    <br />
+    <button class="btn btn-info" onclick="sendToLogo(@Model.Id)">Logoya Aktar</button>
+    <a href="/Projects/Operations" class="btn btn-warning float-end" style="margin:5px"><i class="fa fa-backward"></i> Geri Dön</a>
+</div>
+<section class="section dashboard">
+    <div class="row" style="border:2px solid black">
+        <div class="col-lg-12">
+            <div class="row table-responsive">
+                <div class="col-lg-12" style="margin:5px 0px 5px 0px">
+                    <table class="table">
+                        <tr>
+                            @Html.HiddenFor(x => x.Id)
+                            <th style="width:10%">Proje Kodu</th>
+                            <td style="width:20%">
+                                @Html.TextBoxFor(model => model.ProjectCode, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                            </td>
+                            <td style="width:5%"></td>
+                            <th style="width:10%">Proje Adı </th>
+                            <td style="width:20%">
+                                @Html.TextBoxFor(model => model.ProjectName, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                            </td>
+                            <td style="width:5%"></td>
+                            <th style="width:10%">Firma</th>
+                            <td style="width:20%">
+                                @Html.TextBoxFor(model => model.Company, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                @Html.HiddenFor(x => x.CompanyId)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width:10%">Tarih</th>
+                            <td style="width:20%">
+                                @Html.TextBoxFor(model => model.ProjectDate, "{0:dd.MM.yyyy}", new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                            </td>
+                            <td style="width:5%"></td>
+                            <th style="width:10%">Menşei</th>
+                            <td style="width:20%">
+                                @Html.TextBoxFor(model => model.Origin, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                            </td>
+                            <td style="width:5%"></td>
+                            <th style="width:10%">Marka</th>
+                            <td style="width:20%">
+                                @Html.TextBoxFor(model => model.Brand, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                @Html.HiddenFor(x => x.BrandId)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width:10%">Sektör</th>
+                            <td style="width:20%">
+                                @Html.TextBoxFor(model => model.Sector, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                @Html.HiddenFor(x => x.SectorId)
+                            </td>
+                            <td style="width:5%"></td>
+                            <th style="width:10%">Proje Sorumlusu</th>
+                            <td style="width:20%">
+                                @Html.TextBoxFor(model => model.User, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                @Html.HiddenFor(model => model.UserId)
+                            </td>
+                            <td style="width:5%"></td>
+                            <th style="width:10%">Proje Durumu</th>
+                            <td style="width:20%">
+                                @Html.DropDownListFor(model => model.Status, new SelectList(ViewBag.Statuses, "Value", "Text", Model.Status), new { @class = "form-control form-select", @style = "font-size:12px!Important", @id = "projectStatus", @onchange = "projectStatusChange(" + Model.Id + ")" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Alt Sektör</th>
+                            <td>
+                                @Html.TextBoxFor(model => model.SubSector, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                @Html.HiddenFor(x => x.SubSectorId)
+                            </td>
+                            <td colspan="6" rowspan="3">
+                                <div class="col-lg-12" style="background-color:white">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <div class="dropzone-pro" style="width:100%">
+                                                    <div id="dropzone">
+                                                        <form action="/upload" class="dropzone dropzone-custom needsclick" id="demo-upload">
+                                                            <div class="dz-message needsclick download-custom">
+                                                                <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                                                <h2>Yüklenecek dosyaları sürükleyin ya da buraya tıklayınız..</h2>
+                                                            </div>
+                                                            <div class="col-lg-12" style="color:green" id="txtUploadResultSuccess"></div>
+                                                            <div class="col-lg-12" style="color:red" id="txtUploadResultFailed"></div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                @{
+                                                    int countDoc = 1;
+                                                }
+                                                @foreach (var docs in Model.ProjectDocs)
+                                                {
+                                                    <div class="col-sm-6 col-md-3">
+                                                        <button type="button" onclick="deleteDocument(@docs.Id)" class="btn btn-danger float-end" style="border-radius:5px"><i class="fa fa-close"></i></button>
+                                                        <a href="@Url.Action("GetFile", "Projects", new { projectCode = Model.ProjectCode, number = @docs.Id })" target="_blank">
+                                                            <div class="thumbnail" style="box-shadow: 5px 10px #888888;border-radius: 6px;height:118px">
+                                                                <img src="data:image/png;base64, @Convert.ToBase64String(@docs.DocumentIcon) " style="height:60px;width:60px;" alt="@docs.DocumentName" />
+                                                                <div class="caption" style="margin-top:10px">
+                                                                    <h5 style="font-size:12px;overflow-wrap:break-word">@docs.DocumentName</h5>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    countDoc++;
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Ajans/Direk Satış</th>
+                            <td>
+                                @Html.TextBoxFor(model => model.Agency, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Müşteri Adı</th>
+                            <td>
+                                @Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                @Html.HiddenFor(x => x.CustomerNameId)
+                            </td>
+                        </tr>
+                        @if (Model.Agency == "Ajans")
+                        {
+                            <tr>
+                                <th style="width:10%">Ajans</th>
+                                <td style="width:20%">
+                                    @Html.TextBoxFor(model => model.AgencyName, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                    @Html.HiddenFor(x => x.AgencyId)
+                                </td>
+                                <td style="width:5%"></td>
+                                <td style="width:10%"></td>
+                                <td style="width:20%"></td>
+                                <td style="width:5%"></td>
+                                <td style="width:10%"></td>
+                                <td style="width:20%"></td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row table-responsive">
+        <div class="col-lg-12" style="margin-top:10px">
+            <button class="btn btn-success float-end" onclick="SaveOperation()">Kaydet</button>
+            <br />
+            <br />
+            <table class="table table-bordered" style="border:3px solid black">
+                <thead>
+                    <tr style="background-color: cornflowerblue">
+                        <th>Miktar</th>
+                        <th>Birim Fiyat</th>
+                        <th>KDV(Oran)</th>
+                        <th>Tutar</th>
+                        <th>KDV(Tutar)</th>
+                        <th>Net Tutar</th>
+                        <th>Platform</th>
+                        <th>Live Mı?</th>
+                        <th>Ajans Var Mı?</th>
+                        <th>Ajans</th>
+                        <th>Influencer</th>
+                        <th>Belge Türü</th>
+                        <th>Alış Tutarı</th>
+                    </tr>
+                </thead>
+                <tbody id="lineOperation">
+                    @foreach (var item in Model.ProjectLines)
+                    {
+                        <tr>
+                            @Html.HiddenFor(x => item.Id)
+                            <td style="text-align:right">@item.Quantity</td>
+                            <td style="text-align:right">@item.UnitPrice.ToString("N4") &#x20BA;</td>
+                            <td style="text-align:right">@item.VatRate</td>
+                            <td style="text-align:right">@item.Total.ToString("N4") &#x20BA;</td>
+                            <td style="text-align:right">@item.VatTotal.ToString("N4") &#x20BA;</td>
+                            <td style="text-align:right">@item.NetTotal.ToString("N4") &#x20BA;</td>
+                            <td>@item.Platform</td>
+                            @Html.HiddenFor(x => item.PlatformId)
+                            @if (item.Live == true)
+                            {
+                                <td>Evet</td>
+                            }
+                            else
+                            {
+                                <td>Hayır</td>
+                            }
+                            @if (item.IsAgency == true)
+                            {
+                                <td>Evet</td>
+                            }
+                            else
+                            {
+                                <td>Hayır</td>
+                            }
+                            <td>@item.Agency</td>
+                            @Html.HiddenFor(x => item.AgencyId)
+                            <td>@item.Influencer</td>
+                            @Html.HiddenFor(x => item.InfluencerId)
+                            <td>@item.DocumentType</td>
+                            @Html.HiddenFor(x => item.DocumentTypeId)
+                            <td style="text-align:right">@item.BuyPrice.ToString("N4") &#x20BA;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="12" style="text-align:end">
+                                <b>Satır Kalan</b>
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(model => item.LineRemaining, "{0:N4}", new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                            </td>
+                        </tr>
+                        <tr style="border:2px thin black">
+                            <td colspan="13">
+                                <div class="row">
+                                    <div class="col-lg-12" style="margin-top:10px">
+                                        <table class="table table-bordered" style="border:2px solid gray">
+                                            <thead>
+                                                <tr style="background-color:bisque">
+                                                    <th style="width:min-content!important">Seçim</th>
+                                                    <th>Sıra</th>
+                                                    <th>Durumu</th>
+                                                    <th>İşlem Tarihi</th>
+                                                    <th>Açıklama</th>
+                                                    <th>Link</th>
+                                                    <th>Fiyat</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var step in item.ProjectLineSteps.Where(x => x.ProjectLineId == item.Id))
+                                                {
+                                                    if (step.Status == 3)
+                                                    {
+                                                        <tr>
+                                                            @Html.HiddenFor(x => step.Id)
+                                                            @Html.HiddenFor(x => step.ProjectLineId)
+                                                            <td style="width:min-content!important">
+                                                                <button id="btnSelectStep_@i@item.Id" name="btnSelectStep" type="button" onclick="SelectStep(@i,@item.Id)" class="btn btn-info btn-sm float-start disabled" style="margin-top:6px;background-color:white; border:1px solid dodgerblue ;padding:2px 5px"><i class="fa fa-check" style="color:white"></i></button>
+                                                            </td>
+                                                            <td>@i</td>
+                                                            <td>
+                                                                @Html.DropDownListFor(model => step.Status, new SelectList(ViewBag.StepStatus, "Key", "Value", step.Status), "Durum Seçiniz", new { @class = "form-control form select", @style = "font-size:12px!Important", @required = "required", @disabled = "disabled" })
+                                                            </td>
+                                                            <td class="date-picker-inner">
+                                                                @Html.TextBoxFor(model => step.StepDate, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control", @style = "font-size:12px!Important;", @disabled = "disabled" })
+                                                            </td>
+                                                            <td>
+                                                                @Html.TextBoxFor(model => step.Explanation, new { @class = "form-control", @style = "font-size:12px!Important", @disabled = "disabled" })
+                                                            </td>
+                                                            <td>
+                                                                @Html.TextBoxFor(model => step.Link, new { @class = "form-control", @style = "font-size:12px!Important", @disabled = "disabled" })
+                                                            </td>
+                                                            <td>
+                                                                @Html.TextBoxFor(model => step.Price, "{0:N4}", new { @class = "form-control", @style = "font-size:12px!Important", @disabled = "disabled" })
+                                                            </td>
+                                                        </tr>
+                                                        i++;
+                                                    }
+                                                    else
+                                                    {
+                                                        <tr>
+                                                            @Html.HiddenFor(x => step.Id)
+                                                            @Html.HiddenFor(x => step.ProjectLineId)
+                                                            <td style="width:min-content!important">
+                                                                <button id="btnSelectStep_@i@item.Id" name="btnSelectStep" type="button" onclick="SelectStep(@i,@item.Id)" class="btn btn-info btn-sm float-start" style="margin-top:6px;background-color:white; border:1px solid dodgerblue ;padding:2px 5px"><i class="fa fa-check" style="color:white"></i></button>
+                                                            </td>
+                                                            <td>@i</td>
+                                                            <td>
+                                                                @Html.DropDownListFor(model => step.Status, new SelectList(ViewBag.StepStatus, "Key", "Value", step.Status), "Durum Seçiniz", new { @class = "form-control form select", @style = "font-size:12px!Important", @required = "required" })
+                                                            </td>
+                                                            <td class="date-picker-inner">
+                                                                @Html.TextBoxFor(model => step.StepDate, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control", @style = "font-size:12px!Important;" })
+                                                            </td>
+                                                            <td>
+                                                                @Html.TextBoxFor(model => step.Explanation, new { @class = "form-control", @style = "font-size:12px!Important", @autocomplete = "off", @placeholder = "Açıklama girmak için tıklayınız." })
+                                                            </td>
+                                                            <td>
+                                                                @Html.TextBoxFor(model => step.Link, new { @class = "form-control", @style = "font-size:12px!Important", @autocomplete = "off", @placeholder = "Link girmek için tıklayınız." })
+                                                            </td>
+                                                            <td>
+                                                                @Html.TextBoxFor(model => step.Price, "{0:N4}", new { @class = "form-control", @style = "font-size:12px!Important", @autocomplete = "off" })
+                                                            </td>
+                                                        </tr>
+                                                        i++;
+                                                    }
+                                                }
+                                                @{
+                                                    i = 1;
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

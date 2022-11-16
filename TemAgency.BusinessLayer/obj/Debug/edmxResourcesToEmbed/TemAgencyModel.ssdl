@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TEMAgencyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ProjectLines">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="ServiceExp" Type="nvarchar" MaxLength="150" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="UnitPrice" Type="float" />
+    <Property Name="VatRate" Type="int" />
+    <Property Name="Total" Type="float" />
+    <Property Name="VatTotal" Type="float" />
+    <Property Name="NetTotal" Type="float" />
+    <Property Name="Platform" Type="nvarchar" MaxLength="50" />
+    <Property Name="Live" Type="bit" />
+    <Property Name="IsAgency" Type="bit" />
+    <Property Name="Agency" Type="nvarchar" MaxLength="150" />
+    <Property Name="Influencer" Type="nvarchar" MaxLength="150" />
+    <Property Name="BuyPrice" Type="float" />
+  </EntityType>
+  <EntityType Name="Projects">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProjectName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProjectDate" Type="date" />
+    <Property Name="Company" Type="nvarchar" MaxLength="250" />
+    <Property Name="ArpCode" Type="nvarchar" MaxLength="250" />
+    <Property Name="Origin" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sector" Type="nvarchar" MaxLength="50" />
+    <Property Name="SubSector" Type="nvarchar" MaxLength="50" />
+    <Property Name="Agency" Type="nvarchar" MaxLength="50" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <Association Name="FK_ProjectLines_Projects">
+    <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+    <End Role="ProjectLines" Type="Self.ProjectLines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectLines">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TEMAgencyModelStoreContainer">
+    <EntitySet Name="ProjectLines" EntityType="Self.ProjectLines" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ProjectLines_Projects" Association="Self.FK_ProjectLines_Projects">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="ProjectLines" EntitySet="ProjectLines" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

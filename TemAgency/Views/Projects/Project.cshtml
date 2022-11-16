@@ -1,0 +1,277 @@
+﻿@model Projects
+@{
+    ViewBag.Title = "Proje " + Model.ProjectCode;
+}
+<div class="pagetitle">
+    <h1>@Model.ProjectCode</h1>
+    <br />
+    <br />
+    <button class="btn btn-info" onclick="sendToLogo(@Model.Id)">Logoya Aktar</button>
+    <a href="/Projects/AllProjects" class="btn btn-warning float-end" style="margin:5px"><i class="fa fa-backward"></i> Geri Dön</a>
+</div>
+<section class="section dashboard">
+    <div class="row" style="border:2px solid gray">
+        <div class="col-lg-12">
+            <div class="row table-responsive">
+                <div class="col-lg-12" style="margin:5px 0px 5px 0px">
+                    <table class="table">
+                        <tr>
+                            @Html.HiddenFor(x => x.Id)
+                            <th style="width:10%">Proje Kodu</th>
+                            <td style="width:20%">
+                                @Html.TextBoxFor(model => model.ProjectCode, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                            </td>
+                            <td style="width:5%"></td>
+                            <th style="width:10%">Proje Adı </th>
+                            <td style="width:20%">
+                                @Html.TextBoxFor(model => model.ProjectName, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                            </td>
+                            <td style="width:5%"></td>
+                            <th style="width:10%">Firma</th>
+                            <td style="width:20%">
+                                @Html.TextBoxFor(model => model.Company, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                @Html.HiddenFor(x => x.CompanyId)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width:10%">Tarih</th>
+                            <td style="width:20%">
+                                @Html.TextBoxFor(model => model.ProjectDate, "{0:dd.MM.yyyy}", new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                            </td>
+                            <td style="width:5%"></td>
+                            <th style="width:10%">Menşei</th>
+                            <td style="width:20%">
+                                @Html.TextBoxFor(model => model.Origin, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                            </td>
+                            <td style="width:5%"></td>
+                            <th style="width:10%">Marka</th>
+                            <td style="width:20%">
+                                @Html.TextBoxFor(model => model.Brand, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                @Html.HiddenFor(x => x.BrandId)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width:10%">Sektör</th>
+                            <td style="width:20%">
+                                @Html.TextBoxFor(model => model.Sector, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                @Html.HiddenFor(x => x.SectorId)
+                            </td>
+                            <td style="width:5%"></td>
+                            <th style="width:10%">Proje Sorumlusu</th>
+                            <td style="width:20%">
+                                @Html.TextBoxFor(model => model.User, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                @Html.HiddenFor(model => model.UserId)
+                            </td>
+                            <td style="width:5%"></td>
+                            <th style="width:10%">Proje Durumu</th>
+                            <td style="width:20%">
+                                @Html.DropDownListFor(model => model.Status, new SelectList(ViewBag.Statuses, "Value", "Text", Model.Status), new { @class = "form-control form-select", @style = "font-size:12px!Important", @id = "projectStatus", @onchange = "projectStatusChange(" + Model.Id + ")" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Alt Sektör</th>
+                            <td>
+                                @Html.TextBoxFor(model => model.SubSector, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                @Html.HiddenFor(x => x.SubSectorId)
+                            </td>
+                            <td></td>
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <th></th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Ajans/Direk Satış</th>
+                            <td>
+                                @Html.TextBoxFor(model => model.Agency, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                            </td>
+                            <td></td>
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <th></th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Müşteri Adı</th>
+                            <td>
+                                @Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                @Html.HiddenFor(x => x.CustomerNameId)
+                            </td>
+                            <td></td>
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <th></th>
+                            <td></td>
+                        </tr>
+                        @if (Model.Agency == "Ajans")
+                        {
+                            <tr>
+                                <th style="width:10%">Ajans</th>
+                                <td style="width:20%">
+                                    @Html.TextBoxFor(model => model.AgencyName, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                    @Html.HiddenFor(x => x.AgencyId)
+                                </td>
+                                <td style="width:5%"></td>
+                                <td style="width:10%"></td>
+                                <td style="width:20%"></td>
+                                <td style="width:5%"></td>
+                                <td style="width:10%"></td>
+                                <td style="width:20%"></td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="border-right:2px solid gray;border-left:2px solid gray;border-bottom:2px solid gray">
+        <div class="col-lg-12 table-responsive" style="margin-top:10px">
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="background-color:cornflowerblue">
+                        <th>Miktar</th>
+                        <th>Birim Fiyat</th>
+                        <th>KDV(Oran)</th>
+                        <th>Tutar</th>
+                        <th>KDV(Tutar)</th>
+                        <th>Net Tutar</th>
+                        <th>Platform</th>
+                        <th>Live Mı?</th>
+                        <th>Ajans Var Mı?</th>
+                        <th>Ajans</th>
+                        <th>Influencer</th>
+                        <th>Belge Türü</th>
+                        <th>Alış Tutarı</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ProjectLines)
+                    {
+                        <tr>
+                            @Html.HiddenFor(x => item.Id)
+                            <td style="text-align:right">@item.Quantity</td>
+                            <td style="text-align:right">@item.UnitPrice.ToString("N4") &#x20BA;</td>
+                            <td style="text-align:right">@item.VatRate</td>
+                            <td style="text-align:right">@item.Total.ToString("N4") &#x20BA;</td>
+                            <td style="text-align:right">@item.VatTotal.ToString("N4") &#x20BA;</td>
+                            <td style="text-align:right">@item.NetTotal.ToString("N4") &#x20BA;</td>
+                            <td>@item.Platform</td>
+                            @Html.HiddenFor(x => item.PlatformId)
+                            @if (item.Live == true)
+                            {
+                                <td>Evet</td>
+                            }
+                            else
+                            {
+                                <td>Hayır</td>
+                            }
+                            @if (item.IsAgency == true)
+                            {
+                                <td>Evet</td>
+                            }
+                            else
+                            {
+                                <td>Hayır</td>
+                            }
+                            <td>@item.Agency</td>
+                            @Html.HiddenFor(x => item.AgencyId)
+                            <td>@item.Influencer</td>
+                            @Html.HiddenFor(x => item.InfluencerId)
+                            <td>@item.DocumentType</td>
+                            @Html.HiddenFor(x => item.DocumentTypeId)
+                            <td style="text-align:right">@item.BuyPrice.ToString("N4") &#x20BA;</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row" style="border-right:2px solid gray;border-left:2px solid gray;border-bottom:2px solid gray">
+        <div class="col-lg-6" style="margin-bottom:10px; margin-top:10px">
+            <h5>Dökümanlar</h5>
+            <div class="row">
+                <div class="dropzone-pro" style="width:100%">
+                    <div id="dropzone">
+                        <form action="/upload" class="dropzone dropzone-custom needsclick" id="demo-upload">
+                            <div class="dz-message needsclick download-custom">
+                                <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                <h2>Yüklenecek dosyaları sürükleyin ya da buraya tıklayınız..</h2>
+                            </div>
+                            <div class="col-lg-12" style="color:green" id="txtUploadResultSuccess"></div>
+                            <div class="col-lg-12" style="color:red" id="txtUploadResultFailed"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 table-responsive" style="margin-top:10px">
+            <div class="row">
+                @if (Model.ProjectDocs.Count > 0)
+                {
+                    <table class="table" style="width:90%">
+                        <thead>
+                            <tr>
+                                <th>Döküman</th>
+                                <th>Tarih</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var docs in Model.ProjectDocs.OrderByDescending(x => x.DocumentDate))
+                            {
+                                <tr class="clickable-row" title="İndirmek için tıklayınız." data-href="@Url.Action("GetFile", "Projects", new { projectCode = Model.ProjectCode,number = @docs.Id })">
+                                    <td>
+                                        <img src="data:image/png;base64, @Convert.ToBase64String(@docs.DocumentIcon) " style="height:25px;width:25px;" alt="@docs.DocumentName" />
+                                        @docs.DocumentName
+                                    </td>
+                                    <td>
+                                        @docs.DocumentDate.ToString("dd.MM.yyyy HH:mm")
+                                        @Html.HiddenFor(model => docs.DocumentDate)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <table class="table" style="width:10%">
+                        <thead>
+                            <tr>
+                                <th>Sil</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var docs in Model.ProjectDocs.OrderByDescending(x => x.DocumentDate))
+                            {
+                                <tr>
+                                    <td>
+                                        <button type="button" onclick="deleteDocument(@docs.Id)" class="btn btn-danger btn-xs waves-effect pull-right" style="border-radius:6px"><i class="fa fa-close"></i></button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+<script>
+    $(document).ready(function () {
+        var b = localStorage.getItem("uploadkey");
+        if (b !== null) {
+            $("#txtUploadResultSuccess").remove();
+            $("#demo-upload").append("<div class='col-lg-12' style='color: green' id='txtUploadResultSuccess'></div>");
+            $("#txtUploadResultSuccess").append("<br/>" + b);
+        }
+        localStorage.removeItem("uploadkey");
+    });
+</script>
+<script>
+    jQuery(document).ready(function ($) {
+        $(".clickable-row").click(function () {
+            window.location = $(this).data("href");
+        });
+    });
+</script>

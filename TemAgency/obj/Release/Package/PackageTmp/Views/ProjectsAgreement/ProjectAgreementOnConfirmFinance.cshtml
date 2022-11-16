@@ -1,0 +1,154 @@
+﻿@model ProjectsAgreement
+@{
+    ViewBag.Title = "Sözleşmeli Proje";
+}
+<div class="pagetitle">
+    <h1>Sözleşmeli Proje</h1>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                @if (Model.Status == 4)
+                {
+                    <div class="col-lg-8">
+                    </div>
+                    <div class="col-lg-4">
+                        <button class="btn btn-success float-end" onclick="FinanceAcceptProject(@Model.Id)"><i class="fa fa-save"></i> Onayla</button>
+                        <button class="btn btn-danger float-end" style="margin-right:10px" onclick="FinanceCancelProject(@Model.Id)"><i class="fa fa-cancel"></i> Reddet</button>
+                    </div>
+                }
+                else
+                {
+                    <label style="width:100%;text-align:center;font-size:20px;background-color:orange;color:white" class="label col-lg-12"> Bu projeyle alakalı daha önce işlem yapılmıştır. </label>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<section class="section dashboard">
+    <div class="row" style="border:2px solid gray">
+        <div class="col-lg-12">
+            <div class="row table-responsive">
+                <div class="col-lg-12" style="margin:5px 0px 5px 0px">
+                    <table class="table">
+                        <tr>
+                            @Html.HiddenFor(x => x.Id)
+                            @Html.HiddenFor(x => x.Status)
+                            <th style="width:10%">Müşteri</th>
+                            <td style="width:35%">
+                                @Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                            </td>
+                            <td style="width:10%"></td>
+                            <th style="width:10%">Tarih </th>
+                            <td style="width:35%">
+                                @Html.TextBoxFor(model => model.AgreementDate, "{0:dd.MM.yyyy}", new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width:10%">Projeyi Oluşturan</th>
+                            <td style="width:35%">
+                                @Html.TextBoxFor(model => model.User, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                @Html.HiddenFor(model => model.UserId)
+                            </td>
+                            <td style="width:10%"></td>
+                            <th style="width:10%">Durum</th>
+                            <td style="width:35%">
+                                @Html.TextBoxFor(model => model.StatusStr, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width:10%">Firma</th>
+                            <td style="width:35%">
+                                @Html.TextBoxFor(model => model.Company, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                @Html.HiddenFor(model => model.CompanyId)
+                            </td>
+                            <td style="width:10%"></td>
+                            @if (Model.Status == 4)
+                            {
+                                <th style="width:10%">Damga Vergisine Tâbi Mi?</th>
+                                <td style="width:35%">
+                                    @Html.DropDownListFor(model => model.StampTax, new SelectList(ViewBag.Taxes, "Value", "Text"), "Seçiniz", new { @class = "form-control form-select", @style = "font-size:12px!Important" })
+                                </td>
+                            }
+                            else
+                            {
+                                <th style="width:10%">Damga Vergisine Tâbi Mi?</th>
+                                if (Model.StampTax)
+                                {
+                                    <td style="width:35%">
+                                        @Html.TextBox("StampTax", "Evet", new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td style="width:35%">
+                                        @Html.TextBox("StampTax", "Hayır", new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                    </td>
+                                }
+                            }
+                        </tr>
+                        <tr>
+                            <th>Açıklama</th>
+                            <td colspan="8">
+                                @Html.TextAreaFor(model => model.Explanation, new { @class = "form-control", @style = "font-size:12px!Important", @rows = "3", @readonly = "readonly" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Avukat Açıklaması</th>
+                            <td colspan="8">
+                                @Html.TextAreaFor(model => model.LExplanation, new { @class = "form-control", @style = "font-size:12px!Important", @rows = "3", @readonly = "readonly" })
+                            </td>
+                        </tr>
+                        @if (Model.Status == 4)
+                        {
+                            <tr>
+                                <th>Finans Açıklaması</th>
+                                <td colspan="8">
+                                    @Html.TextAreaFor(model => model.FExplanation, new { @class = "form-control", @style = "font-size:12px!Important", @rows = "3", @placeholder = "Açıklama girmek için tıklayınız." })
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <th>Finans Açıklaması</th>
+                                <td colspan="8">
+                                    @Html.TextAreaFor(model => model.FExplanation, new { @class = "form-control", @style = "font-size:12px!Important", @rows = "3", @readonly = "readonly" })
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td colspan="8">
+                                <h4>Dökümanlar</h4>
+                                <div class="col-lg-12">
+                                    @{
+                                        int countDoc = 1;
+                                    }
+                                    @foreach (var docs in Model.ProjectAgreementDocs.OrderByDescending(x => x.DocumentDate))
+                                    {
+                                        <div class="col-lg-3">
+                                            <a href="@Url.Action("GetFileProjectsAgreement", "ProjectsAgreement", new { number = @docs.Id })" target="_blank">
+                                                <div class="thumbnail" style="box-shadow: 5px 10px #888888;border-radius: 6px;height:118px">
+                                                    <img src="data:image/png;base64, @Convert.ToBase64String(@docs.DocumentIcon) " style="height:60px;width:60px;" alt="@docs.DocumentName" />
+                                                    <div class="caption" style="margin-top:10px">
+                                                        <h5 style="font-size:12px;overflow-wrap:break-word">@docs.DocumentName</h5>
+                                                    </div>
+                                                    <div class="caption" style="margin-top:10px">
+                                                        <h5 style="font-size:12px">@docs.DocumentDate.ToString("dd.MM.yyyy HH:mm")</h5>
+                                                        @Html.HiddenFor(model => docs.DocumentDate)
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        countDoc++;
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,135 @@
+﻿@model Projects
+@{
+    ViewBag.Title = "Yeni Proje";
+}
+<div class="pagetitle">
+    <h1>Yeni Proje</h1>
+    <br />
+    <br />
+    <button class="btn btn-success float-end" style="width:max-content" onclick="saveProject()"><i class="fa fa-save"></i> Kaydet</button>
+    <a href="/Projects/AllProjects" class="btn btn-warning float-end" style="margin-right:10px"><i class="fa fa-backward"></i> Vazgeç</a>
+    <br />
+    <br />
+</div>
+<section class="section dashboard">
+    <div class="row" style="border:2px solid gray">
+        <div class="col-lg-12">
+            <div class="row table-responsive">
+                <div class="col-lg-12" style="margin:5px 0px 5px 0px">
+                    <table class="table" id="project">
+                        <tr>
+                            <th style="width:10%">Proje Kodu</th>
+                            <td style="width:20%">
+                                @Html.TextBoxFor(model => model.ProjectCode, new { @class = "form-control", @style = "font-size:12px!Important", @disabled = "disabled" })
+                            </td>
+                            <td style="width:5%"></td>
+                            <th style="width:10%">Proje Adı </th>
+                            <td style="width:20%">
+                                @Html.TextBoxFor(model => model.ProjectName, new { @class = "form-control", @style = "font-size:12px!Important", @autocomplete = "off" })
+                            </td>
+                            <td style="width:5%"></td>
+                            <th style="width:10%">Firma</th>
+                            <td style="width:20%">
+                                @Html.DropDownListFor(model => model.Company, new SelectList(ViewBag.Firms, "LOGICALREF", "DESCRIPTION"), "Firma Seçiniz", new { @class = "form-control form-select", @style = "font-size:12px!Important" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width:10%">Tarih</th>
+                            <td style="width:20%">
+                                @Html.TextBoxFor(model => model.ProjectDate, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control", @style = "font-size:12px!Important;" })
+                            </td>
+                            <td style="width:5%"></td>
+                            <th style="width:10%">Menşei</th>
+                            <td style="width:20%">
+                                @Html.DropDownListFor(model => model.Origin, new SelectList(ViewBag.Origins, "Value", "Text"), "Menşei Seçiniz", new { @class = "form-control form-select", @style = "font-size:12px!Important" })
+                            </td>
+                            <td style="width:5%"></td>
+                            <th style="width:10%">Marka</th>
+                            <td style="width:20%">
+                                @Html.DropDownListFor(model => model.Brand, new SelectList(ViewBag.Brands, "Id", "Name"), "Marka Seçiniz", new { @class = "form-control form-select", @style = "font-size:12px!Important", })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="10%">Sektör</th>
+                            <td width="20%">
+                                @Html.DropDownListFor(model => model.Sector, new SelectList(ViewBag.Sectors, "Id", "Description"), "Sektör Seçiniz", new { @class = "form-control form-select", @style = "font-size:12px!Important", @id = "sectorList" })
+                            </td>
+                            <td style="width:5%"></td>
+                            <th style="width:10%">Proje Sorumlusu</th>
+                            <td style="width:20%">
+                                @Html.TextBoxFor(model => model.User, new { @class = "form-control", @style = "font-size:12px!Important", @autocomplete = "off", @disabled = "disabled" })
+                                @Html.HiddenFor(model => model.UserId)
+                            </td>
+                            <td style="width:5%"></td>
+                            <th style="width:10%"></th>
+                            <td style="width:20%"></td>
+                        </tr>
+                        <tr>
+                            <th>Alt Sektör</th>
+                            <td>
+                                @Html.DropDownListFor(model => model.SubSector, new SelectList(ViewBag.SubSectors, "Id", "Description"), "Alt Sektör Seçiniz", new { @class = "form-control form-select", @style = "font-size:12px!Important", @id = "subSectorList", @disabled = "disabled" })
+                            </td>
+                            <td></td>
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <th></th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Ajans/Direk Satış</th>
+                            <td>
+                                @Html.DropDownListFor(model => model.Agency, new SelectList(ViewBag.Agency, "Value", "Text"), "Seçiniz", new { @class = "form-control form-select", @style = "font-size:12px!Important", @onchange = "agencyChanged()" })
+                            </td>
+                            <td></td>
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <th></th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Müşteri</th>
+                            <td>
+                                @Html.DropDownListFor(model => model.CustomerNameId, new SelectList(ViewBag.Customers, "LOGICALREF", "DESCRIPTION"), "Müşteri Seçiniz", new { @class = "form-control form-select", @style = "font-size:12px!Important" })
+                            </td>
+                            <td></td>
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <th></th>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row table-responsive" style="border-right:2px solid gray;border-left:2px solid gray;border-bottom:2px solid gray">
+        <div class="col-lg-12" style="margin-top:10px">
+            <button type="button" id="newLine" class="btn btn-success" style="width:150px;margin-bottom:10px"><i class="fa fa-add"></i> Yeni Satır Ekle</button>
+            <table class="table table-bordered" id="projectLine">
+                <thead>
+                    <tr>
+                        <th>Miktar</th>
+                        <th>Birim Fiyat</th>
+                        <th>KDV(Oran)</th>
+                        <th>Tutar</th>
+                        <th>KDV(Tutar)</th>
+                        <th>Net Tutar</th>
+                        <th>Platform</th>
+                        <th>Live Mı?</th>
+                        <th>Ajans Var Mı?</th>
+                        <th style="width:130px">Ajans</th>
+                        <th>Influencer</th>
+                        <th>Belge Türü</th>
+                        <th>Alış Tutarı</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

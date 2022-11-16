@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html style="min-height:100%">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="~/Content/responsive.css" rel="stylesheet" />
+    <link href="~/Content/admin/css/admin.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/boxicons/css/transformations.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/boxicons/css/boxicons.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/boxicons/css/animations.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/simple-datatables/style.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/quill/quill.snow.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/quill/quill.bubble.css" rel="stylesheet" />
+    <link href="~/Content/dropzone.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/all.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/brands.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/fontawesome.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/regular.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/solid.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/svg-with-js.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/v4-font-face.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/v4-shims.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/v5-font-face.css" rel="stylesheet" />
+    <link href="~/Content/MvcGrid/mvc-grid.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="~/Images/tem.jpg">
+</head>
+<body>
+    @{
+        DataLayer layer = new DataLayer();
+        AspNetUsers person;
+    }
+    @if (User.Identity.IsAuthenticated)
+    {
+        person = layer.GetUserByUserName(User.Identity.Name);
+    }
+    else
+    {
+        person = new AspNetUsers();
+    }
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="/Home/Index" class="logo d-flex align-items-center">
+                <span class="d-none d-lg-block">TEM Agency</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div>
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                <li class="dropdown" style="margin-right:20px">
+                    <ol style="list-style:none">
+                        <li class="dropdown float-end" style="margin-right:20px">
+                            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:black">
+                                <span>
+                                    @person.FullName
+                                </span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="@Url.Action("EditUser","User",new { number = person.Id})" style="color:black;font-size:12px;padding-left:15px;min-width:100%;display:inline-block"><i class="bi bi-person"></i> Profili Düzenle</a>
+                                <a href="@Url.Action("ChangePassword","User",new { number = person.Id})" style="color:black;font-size:12px;padding-left:15px;min-width:100%;display:inline-block"><i class="bi bi-key"></i> Şifre Değiştir</a>
+                                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <a href="javascript:document.getElementById('logoutForm').submit()" style="color:black;font-size:12px;padding-left:15px;min-width:100%;display:inline-block"><i class="bi bi-box-arrow-right"></i> Çıkış Yap</a>
+                                }
+                            </div>
+                        </li>
+                        <br />
+                        @if (!person.EmailConfirmed)
+                        {
+                            <li class="float-end">
+                                <a href="javascript:sendConfirmEmail('@person.Id')" style="color:black">
+                                    <span title="Onaylamak için tıklayınız." style="font-size:9px">E-Posta adresiniz onaylanmamıştır.</span>
+                                </a>
+                            </li>
+                        }
+                    </ol>
+                </li>
+                <li class="nav-item pe-3">
+                    <img src="~/Images/tem.jpg" height="60" width="100" />
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <aside id="sidebar" class="sidebar">
+        <ul class="sidebar-nav" id="sidebar-nav">
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#projects-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>Projeler</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="projects-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="/Projects/AllProjects">
+                            <i class="bi bi-circle"></i><span>Projeler</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Projects/Operations">
+                            <i class="bi bi-circle"></i><span>Operasyon</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/ProjectsAgreement/AllProjectsAgreement">
+                            <i class="bi bi-circle"></i><span>Sözleşmeli Projeler</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#definitions-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-journal-text"></i><span>Tanımlar</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="definitions-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="/Sectors/AllSectors">
+                            <i class="bi bi-circle"></i><span>Sektör Tanımları</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/SubSectors/AllSubSectors">
+                            <i class="bi bi-circle"></i><span>Alt Sektör Tanımları</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Brands/AllBrands">
+                            <i class="bi bi-circle"></i><span>Marka Tanımları</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @if (User.IsInRole("Yönetici"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="/User/Index">
+                        <i class="bi bi-people"></i><span>Kullanıcılar</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </aside>
+    <main id="main" class="main" style="min-height:100%">
+        <div class="all-content-wrapper">
+            @RenderBody()
+        </div>
+    </main>
+    <footer id="footer" class="footer">
+        <div class="copyright">
+            &copy; Copyright @DateTime.Today.Year <strong><span>TEM Agency</span></strong>. Tüm Hakları Saklıdır
+        </div>
+        <div class="credits">
+            <a href="https://www.netline.net.tr/" target="_blank">Netline</a> tarafından tasarlandı.
+        </div>
+    </footer>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <script src="~/Content/admin/vendor/tinymce/tinymce.js"></script>
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.js"></script>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Content/admin/js/main.js"></script>
+    <script src="~/Content/admin/vendor/chart.js/chart.js"></script>
+    <script src="~/Content/admin/vendor/echarts/echarts.min.js"></script>
+    <script src="~/Content/admin/vendor/quill/quill.js"></script>
+    <script src="~/Content/admin/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="~/Scripts/font-awesome/all.js"></script>
+    <script src="~/Scripts/font-awesome/brands.js"></script>
+    <script src="~/Scripts/font-awesome/fontawesome.js"></script>
+    <script src="~/Scripts/font-awesome/regular.js"></script>
+    <script src="~/Scripts/font-awesome/solid.js"></script>
+    <script src="~/Scripts/font-awesome/v4-shims.js"></script>
+    <script src="~/Content/admin/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="~/Scripts/functions.js"></script>
+    <script src="~/Content/js/dropzone/dropzone.js"></script>
+    <script src="~/Scripts/MvcGrid/mvc-grid.js"></script>
+    <script>
+        [].forEach.call(document.getElementsByClassName('mvc-grid'), function (element) {
+            new MvcGrid(element);
+        });
+    </script>
+</body>
+</html>

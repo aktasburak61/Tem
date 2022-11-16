@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TEMAgencyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Projects">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectDate" Type="DateTime" Precision="0" />
+    <Property Name="Company" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ArpCode" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Origin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sector" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SubSector" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Agency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ProjectLines" Relationship="TEMAgencyModel.FK_ProjectLines_Projects" FromRole="Projects" ToRole="ProjectLines" />
+  </EntityType>
+  <EntityContainer Name="TEMAgencyEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Projects" EntityType="Self.Projects" />
+    <EntitySet Name="ProjectLines" EntityType="TEMAgencyModel.ProjectLines" />
+    <AssociationSet Name="FK_ProjectLines_Projects" Association="TEMAgencyModel.FK_ProjectLines_Projects">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="ProjectLines" EntitySet="ProjectLines" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ProjectLines">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="ServiceExp" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="UnitPrice" Type="Double" />
+    <Property Name="VatRate" Type="Int32" />
+    <Property Name="NetTotal" Type="Double" />
+    <Property Name="VatTotal" Type="Double" />
+    <Property Name="Platform" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Live" Type="Boolean" />
+    <Property Name="IsAgency" Type="Boolean" />
+    <Property Name="Agency" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Influencer" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="BuyPrice" Type="Double" />
+    <NavigationProperty Name="Projects" Relationship="TEMAgencyModel.FK_ProjectLines_Projects" FromRole="ProjectLines" ToRole="Projects" />
+    <Property Name="Total" Type="Double" />
+  </EntityType>
+  <Association Name="FK_ProjectLines_Projects">
+    <End Type="TEMAgencyModel.Projects" Role="Projects" Multiplicity="0..1" />
+    <End Type="TEMAgencyModel.ProjectLines" Role="ProjectLines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectLines">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

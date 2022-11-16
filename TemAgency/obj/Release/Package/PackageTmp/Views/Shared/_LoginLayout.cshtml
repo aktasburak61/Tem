@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html style="min-height:100%">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="~/Content/responsive.css" rel="stylesheet" />
+    <link href="~/Content/admin/css/admin.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/boxicons/css/transformations.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/boxicons/css/boxicons.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/boxicons/css/animations.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/simple-datatables/style.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/quill/quill.snow.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/quill/quill.bubble.css" rel="stylesheet" />
+    <link href="~/Content/dropzone.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/all.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/brands.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/fontawesome.css" rel="stylesheet" />
+    <link href="~/Content/admin/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/regular.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/solid.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/svg-with-js.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/v4-font-face.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/v4-shims.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/v5-font-face.css" rel="stylesheet" />
+    <link href="~/Content/MvcGrid/mvc-grid.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="~/Images/tem.jpg">
+</head>
+<body>
+    <div class="color-line"></div>
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
+    <footer class="footer" style="bottom:0px;position:absolute;width:100%">
+        <div class="copyright">
+            &copy; Copyright @DateTime.Today.Year <strong><span>TEM Agency</span></strong>. Tüm Hakları Saklıdır
+        </div>
+        <div class="credits">
+            <a href="https://www.netline.net.tr/" target="_blank">Netline</a> tarafından tasarlandı.
+        </div>
+    </footer>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <script src="~/Content/admin/vendor/tinymce/tinymce.js"></script>
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.js"></script>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Content/admin/js/main.js"></script>
+    <script src="~/Content/admin/vendor/chart.js/chart.js"></script>
+    <script src="~/Content/admin/vendor/echarts/echarts.min.js"></script>
+    <script src="~/Content/admin/vendor/quill/quill.js"></script>
+    <script src="~/Content/admin/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="~/Scripts/font-awesome/all.js"></script>
+    <script src="~/Scripts/font-awesome/brands.js"></script>
+    <script src="~/Scripts/font-awesome/fontawesome.js"></script>
+    <script src="~/Scripts/font-awesome/regular.js"></script>
+    <script src="~/Scripts/font-awesome/solid.js"></script>
+    <script src="~/Scripts/font-awesome/v4-shims.js"></script>
+    <script src="~/Content/admin/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="~/Scripts/functions.js"></script>
+    <script src="~/Content/js/dropzone/dropzone.js"></script>
+    <script src="~/Scripts/MvcGrid/mvc-grid.js"></script>
+    <script>
+        [].forEach.call(document.getElementsByClassName('mvc-grid'), function (element) {
+            new MvcGrid(element);
+        });
+    </script>
+</body>
+</html>

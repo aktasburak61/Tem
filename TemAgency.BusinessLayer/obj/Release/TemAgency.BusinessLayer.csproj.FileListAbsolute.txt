@@ -1,0 +1,17 @@
+C:\Users\Burak\Desktop\TemAgency\TemAgency.BusinessLayer\bin\Release\TemAgency.BusinessLayer.dll.config
+C:\Users\Burak\Desktop\TemAgency\TemAgency.BusinessLayer\bin\Release\TemAgency.BusinessLayer.dll
+C:\Users\Burak\Desktop\TemAgency\TemAgency.BusinessLayer\bin\Release\TemAgency.BusinessLayer.pdb
+C:\Users\Burak\Desktop\TemAgency\TemAgency.BusinessLayer\bin\Release\Dapper.dll
+C:\Users\Burak\Desktop\TemAgency\TemAgency.BusinessLayer\bin\Release\EntityFramework.dll
+C:\Users\Burak\Desktop\TemAgency\TemAgency.BusinessLayer\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Burak\Desktop\TemAgency\TemAgency.BusinessLayer\bin\Release\Newtonsoft.Json.dll
+C:\Users\Burak\Desktop\TemAgency\TemAgency.BusinessLayer\bin\Release\SqlMapper.Common.dll
+C:\Users\Burak\Desktop\TemAgency\TemAgency.BusinessLayer\bin\Release\Dapper.xml
+C:\Users\Burak\Desktop\TemAgency\TemAgency.BusinessLayer\bin\Release\EntityFramework.xml
+C:\Users\Burak\Desktop\TemAgency\TemAgency.BusinessLayer\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Burak\Desktop\TemAgency\TemAgency.BusinessLayer\bin\Release\Newtonsoft.Json.xml
+C:\Users\Burak\Desktop\TemAgency\TemAgency.BusinessLayer\obj\Release\TemAgency.BusinessLayer.csproj.AssemblyReference.cache
+C:\Users\Burak\Desktop\TemAgency\TemAgency.BusinessLayer\obj\Release\TemAgency.BusinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\Burak\Desktop\TemAgency\TemAgency.BusinessLayer\obj\Release\TemAgency.BusinessLayer.csproj.CopyComplete
+C:\Users\Burak\Desktop\TemAgency\TemAgency.BusinessLayer\obj\Release\TemAgency.BusinessLayer.dll
+C:\Users\Burak\Desktop\TemAgency\TemAgency.BusinessLayer\obj\Release\TemAgency.BusinessLayer.pdb

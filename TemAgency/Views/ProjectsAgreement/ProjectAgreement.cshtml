@@ -1,0 +1,256 @@
+﻿@model ProjectsAgreement
+@{
+    ViewBag.Title = "Sözleşmeli Proje";
+}
+<div class="pagetitle">
+    <h1>Sözleşmeli Proje</h1>
+    <br />
+    <br />
+    @if (Model.Status == 2)
+    {
+        <button class="btn btn-success float-end" onclick="SendEditProject(@Model.Id)"><i class="fa fa-save"></i> Revize Yolla</button>
+    }
+    <a href="/ProjectsAgreement/AllProjectsAgreement" class="btn btn-warning float-end" style="margin-right:5px"><i class="fa fa-backward"></i> Geri Dön</a>
+    <br />
+</div>
+<br />
+<section class="section dashboard">
+    <div class="row" style="border:2px solid gray">
+        <div class="col-lg-12">
+            <div class="row table-responsive">
+                <div class="col-lg-12" style="margin:5px 0px 5px 0px">
+                    <table class="table">
+                        <tr>
+                            @Html.HiddenFor(x => x.Id)
+                            @Html.HiddenFor(x => x.Status)
+                            <th style="width:10%">Müşteri</th>
+                            <td style="width:35%">
+                                @Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                            </td>
+                            <td style="width:10%"></td>
+                            <th style="width:10%">Tarih </th>
+                            <td style="width:35%">
+                                @Html.TextBoxFor(model => model.AgreementDate, "{0:dd.MM.yyyy}", new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width:10%">Projeyi Oluşturan</th>
+                            <td style="width:35%">
+                                @Html.TextBoxFor(model => model.User, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                @Html.HiddenFor(model => model.UserId)
+                            </td>
+                            <td style="width:10%"></td>
+                            <th style="width:10%">Durum</th>
+                            @if (Model.Status == 5)
+                            {
+                                <td style="width:35%">
+                                    @Html.DropDownListFor(model => model.Status, new SelectList(ViewBag.Statuses, "Value", "Text", Model.Status), new { @class = "form-control form-select", @style = "font-size:12px!Important", @id = "agreementStatus", @onchange = "agreementStatusChange(" + Model.Id + ")" })
+                                </td>
+                            }
+                            else
+                            {
+                                <td style="width:35%">
+                                    @Html.TextBoxFor(model => model.StatusStr, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <th style="width:10%">Firma</th>
+                            <td style="width:35%">
+                                @Html.TextBoxFor(model => model.Company, new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                @Html.HiddenFor(model => model.CompanyId)
+                            </td>
+                            @if (Model.Status == 5 || Model.Status == 6 || Model.Status == 7)
+                            {
+                                <td style="width:10%"></td>
+                                <th style="width:10%">Damga Vergisine Tâbi Mi?</th>
+                                if (Model.StampTax)
+                                {
+                                    <td style="width:35%">
+                                        @Html.TextBox("StampTax", "Evet", new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td style="width:35%">
+                                        @Html.TextBox("StampTax", "Hayır", new { @class = "form-control", @style = "font-size:12px!Important", @readonly = "readonly" })
+                                    </td>
+                                }
+                            }
+                            else
+                            {
+                                <td style="width:10%"></td>
+                                <th style="width:10%"></th>
+                                <td style="width:35%"></td>
+                            }
+                        </tr>
+                        @if (Model.Status == 2)
+                        {
+                            <tr>
+                                <th>Açıklama</th>
+                                <td colspan="8">
+                                    @Html.TextAreaFor(model => model.Explanation, new { @class = "form-control", @style = "font-size:12px!Important", @rows = "3" })
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <th>Açıklama</th>
+                                <td colspan="8">
+                                    @Html.TextAreaFor(model => model.Explanation, new { @class = "form-control", @style = "font-size:12px!Important", @rows = "3", @readonly = "readonly" })
+                                </td>
+                            </tr>
+                        }
+                        @if (Model.Status != 0)
+                        {
+                            if (Model.Status != 1)
+                            {
+                                <tr>
+                                    <th>Avukat Açıklaması</th>
+                                    <td colspan="8">
+                                        @Html.TextAreaFor(model => model.LExplanation, new { @class = "form-control", @style = "font-size:12px!Important", @rows = "3", @readonly = "readonly" })
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        @if (Model.Status == 5 || Model.Status == 6 || Model.Status == 7)
+                        {
+                            <tr>
+                                <th>Finans Açıklaması</th>
+                                <td colspan="8">
+                                    @Html.TextAreaFor(model => model.FExplanation, new { @class = "form-control", @style = "font-size:12px!Important", @rows = "3", @readonly = "readonly" })
+                                </td>
+                            </tr>
+                        }
+                        @if (Model.ProjectAgreementDocs.Count() > 0 && Model.Status != 2)
+                        {
+                            <tr>
+                                <td colspan="8">
+                                    <h4>Dökümanlar</h4>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Döküman</th>
+                                                <th>Tarih</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var docs in Model.ProjectAgreementDocs.OrderByDescending(x => x.DocumentDate))
+                                            {
+                                                <tr class="clickable-row" title="İndirmek için tıklayınız." data-href="@Url.Action("GetFileProjectsAgreement", "ProjectsAgreement", new { number = @docs.Id })">
+                                                    <td>
+                                                        <img src="data:image/png;base64, @Convert.ToBase64String(@docs.DocumentIcon) " style="height:25px;width:25px;" alt="@docs.DocumentName" />
+                                                        @docs.DocumentName
+                                                    </td>
+                                                    <td>
+                                                        @docs.DocumentDate.ToString("dd.MM.yyyy HH:mm")
+                                                        @Html.HiddenFor(model => docs.DocumentDate)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<br />
+<br />
+@if (Model.Status == 2)
+{
+    <div class="row">
+        <h4>Dökümanlar</h4>
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="dropzone-pro" style="width:100%">
+                            <div id="dropzone">
+                                <form action="/upload" class="dropzone dropzone-custom needsclick" id="demo-upload">
+                                    <div class="dz-message needsclick download-custom">
+                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                                        <h2>Yüklenecek dosyaları sürükleyin ya da buraya tıklayınız..</h2>
+                                    </div>
+                                    <div class="col-lg-12" style="color:green" id="txtUploadResultSuccess"></div>
+                                    <div class="col-lg-12" style="color:red" id="txtUploadResultFailed"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        @if (Model.ProjectAgreementDocs.Count > 0)
+                        {
+                            <table class="table" style="width:90%">
+                                <thead>
+                                    <tr>
+                                        <th>Döküman</th>
+                                        <th>Tarih</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var docs in Model.ProjectAgreementDocs.OrderByDescending(x => x.DocumentDate))
+                                    {
+                                        <tr class="clickable-row" title="İndirmek için tıklayınız." data-href="@Url.Action("GetFileProjectsAgreement", "ProjectsAgreement", new { number = @docs.Id })">
+                                            <td>
+                                                <img src="data:image/png;base64, @Convert.ToBase64String(@docs.DocumentIcon) " style="height:25px;width:25px;" alt="@docs.DocumentName" />
+                                                @docs.DocumentName
+                                            </td>
+                                            <td>
+                                                @docs.DocumentDate.ToString("dd.MM.yyyy HH:mm")
+                                                @Html.HiddenFor(model => docs.DocumentDate)
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <table class="table" style="width:10%">
+                                <thead>
+                                    <tr>
+                                        <th>Sil</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var docs in Model.ProjectAgreementDocs.OrderByDescending(x => x.DocumentDate))
+                                    {
+                                        <tr>
+                                            <td>
+                                                <button type="button" onclick="deleteDocumentProjectsAgreement(@docs.Id)" class="btn btn-danger btn-xs waves-effect pull-right" style="border-radius:6px"><i class="fa fa-close"></i></button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+<script>
+    $(document).ready(function () {
+        var b = localStorage.getItem("uploadkey");
+        if (b !== null) {
+            $("#txtUploadResultSuccess").remove();
+            $("#demo-upload").append("<div class='col-lg-12' style='color: green' id='txtUploadResultSuccess'></div>");
+            $("#txtUploadResultSuccess").append("<br/>" + b);
+        }
+        localStorage.removeItem("uploadkey");
+    });
+</script>
+<script>
+    jQuery(document).ready(function ($) {
+        $(".clickable-row").click(function () {
+            window.location = $(this).data("href");
+        });
+    });
+</script>

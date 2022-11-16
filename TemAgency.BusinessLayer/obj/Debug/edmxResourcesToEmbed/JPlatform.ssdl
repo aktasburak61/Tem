@@ -1,0 +1,680 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JPLATFORMAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="S_ORGUNITS">
+    <Key>
+      <PropertyRef Name="LOGICALREF" />
+    </Key>
+    <Property Name="LOGICALREF" Type="int" Nullable="false" />
+    <Property Name="COMPANYREF" Type="int" Nullable="false" />
+    <Property Name="PARENTREF" Type="int" Nullable="false" />
+    <Property Name="CODE" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="LEVELNR" Type="int" Nullable="false" />
+    <Property Name="ORGUNITTYPE" Type="int" Nullable="false" />
+    <Property Name="AUXCODE" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="GROUPCODE1" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="GROUPCODE2" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="GROUPCODE3" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="GROUPCODE4" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="GROUPCODE5" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="COSTGROUP" Type="int" Nullable="false" />
+    <Property Name="TITLE" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="SOCSECNR" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="STREET" Type="nvarchar" MaxLength="300" />
+    <Property Name="ROAD" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DOORNR" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DISTRICT" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CITY" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="COUNTRY" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="COUNTRYCODE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="ZIPCODE" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PHONENR" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="FAXNR" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="TAXOFFICECODE" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TAXOFFICE" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="TAXNR" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="MERSISNR" Type="nvarchar" MaxLength="22" Nullable="false" />
+    <Property Name="ISKURNR" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ISKURDEPT" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FOUNDDATE" Type="datetime" Nullable="false" />
+    <Property Name="ACTIVITYAREA" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CPANAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CPASURNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CPAIDENTITYNO" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CPASTREET" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPAROAD" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPADOORNR" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPADISTRICT" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPACITY" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPAPHONENR" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="CPATAXOFFICE" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPATAXNR" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPACHAMBERNR" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TRADEREGISNR" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="EMPLOYERNAME" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="EMPLOYERSURNAME" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="EMPLOYERTRID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="EMPLOYEREMAIL" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CALENDARREF" Type="int" Nullable="false" />
+    <Property Name="USERREF" Type="int" Nullable="false" />
+    <Property Name="CONSOLIDATION" Type="int" Nullable="false" />
+    <Property Name="BLOCKED" Type="int" Nullable="false" />
+    <Property Name="DALOCATION" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="DADECIMALCODE" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="DAGROUPCODE" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="DANGERDEGREE" Type="int" Nullable="false" />
+    <Property Name="DANGERCLASS" Type="int" Nullable="false" />
+    <Property Name="WORKDEPTNO" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="UNITOFSSC" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="NR" Type="int" Nullable="false" />
+    <Property Name="AFFECTGENTOTS" Type="int" Nullable="false" />
+    <Property Name="STATUS" Type="int" Nullable="false" />
+    <Property Name="CLOSEDATE" Type="datetime" Nullable="false" />
+    <Property Name="THMUSERCODE" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="THMPASSWORD" Type="nvarchar" MaxLength="109" Nullable="false" />
+    <Property Name="THMCOMPANYCODE" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="EINVOICEUSER" Type="int" Nullable="false" />
+    <Property Name="PKURN" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="GBURN" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="PKURNFOREDISPATCH" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="GBURNFOREDISPATCH" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SGKUSERNAME" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="SGKUSERCODE" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="SGKSYSPASS" Type="nvarchar" MaxLength="65" Nullable="false" />
+    <Property Name="DIVPASSWORD" Type="nvarchar" MaxLength="65" Nullable="false" />
+    <Property Name="COMPANYTYPE" Type="int" Nullable="false" />
+    <Property Name="USEFIRMADDRESS" Type="int" Nullable="false" />
+    <Property Name="GIBUSERCODE" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="GIBPAROLE" Type="nvarchar" MaxLength="57" Nullable="false" />
+    <Property Name="GIBPASSWORD" Type="nvarchar" MaxLength="57" Nullable="false" />
+    <Property Name="LEGISLATIVE" Type="int" Nullable="false" />
+    <Property Name="LOCATIONEMAIL" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LOCATIONWEB" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="NACE" Type="nvarchar" MaxLength="21" Nullable="false" />
+    <Property Name="CPAEMAIL" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CPACNTRYCODE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="CPACNTRY" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPAZIPCODE" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPAFAXNR" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="CPACONTRACTNR" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CPACONTRACTDESC" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CPACONTRACTTYPE" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPACONTRACTDATE" Type="datetime" Nullable="false" />
+    <Property Name="BRANCHCODE" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="EBOOKUSER" Type="int" Nullable="false" />
+    <Property Name="EBOOKBASETYPE" Type="int" Nullable="false" />
+    <Property Name="EARCHIVEUSER" Type="int" Nullable="false" />
+    <Property Name="INTSALESADDR" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="EBOOKUSAGEDATE" Type="datetime" />
+    <Property Name="SMTPSERVERREF" Type="int" Nullable="false" />
+    <Property Name="EBOOKCURRTYPE" Type="int" Nullable="false" />
+    <Property Name="INTEGUSERCODE" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="INTEGUSERPASSWORD" Type="nvarchar" MaxLength="109" Nullable="false" />
+    <Property Name="INTEGUSERSCOPE" Type="int" Nullable="false" />
+    <Property Name="INTEGWSADDRESS" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="BEGINDATE" Type="datetime" Nullable="false" />
+    <Property Name="EBOOKSTARTNR" Type="int" Nullable="false" />
+    <Property Name="CPATITLE" Type="int" Nullable="false" />
+    <Property Name="HASCFCCONTRACT" Type="int" Nullable="false" />
+    <Property Name="CFCNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CFCSURNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CFCCONTRACTNR" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CFCCONTRACTDESC" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CFCCONTRACTTYPE" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CFCCONTRACTDATE" Type="datetime" />
+    <Property Name="CLEARANCE" Type="int" Nullable="false" />
+    <Property Name="CLEARANCEBEGDATE" Type="datetime" Nullable="false" />
+    <Property Name="STATENAME" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="STATECODE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="STATEREF" Type="int" Nullable="false" />
+    <Property Name="CPASTATECODE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="CPASTATENAME" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="ERECONCILIATIONUSER" Type="int" Nullable="false" />
+    <Property Name="RECONUSERCODE" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="RECONUSERPASSWORD" Type="nvarchar" MaxLength="109" Nullable="false" />
+    <Property Name="RECONWSADDRESS" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="EWBUSERSCOPE" Type="int" Nullable="false" />
+    <Property Name="EWBUSERMAIL" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="EWBUSERPASSWORD" Type="nvarchar" MaxLength="109" Nullable="false" />
+    <Property Name="EWBWSADDRESS" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="ADDRESSNR" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EBOOKBACKUP" Type="int" Nullable="false" />
+    <Property Name="GSTID" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="ISD" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ACCOUNTANCYNR" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="BAGKURNR" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ADDEINVOICETYPE" Type="int" Nullable="false" />
+    <Property Name="STATETIN" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="AMENABLECODE" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="AMENABLENAME" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="INTEGRATOR" Type="int" Nullable="false" />
+    <Property Name="EDISPATCHUSER" Type="int" Nullable="false" />
+    <Property Name="PAN" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="REGTYPE" Type="int" Nullable="false" />
+    <Property Name="COMPSCHEMEREF" Type="int" Nullable="false" />
+    <Property Name="ESERVUSAGETYPE" Type="nvarchar" MaxLength="65" Nullable="false" />
+    <Property Name="SIGNCERTENDDATE" Type="datetime" />
+    <Property Name="EPRODUCERUSER" Type="int" Nullable="false" />
+    <Property Name="CPA2TITLE" Type="int" Nullable="false" />
+    <Property Name="CPA2NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CPA2SURNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CPA2IDENTITYNO" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CPA2STREET" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPA2ROAD" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPA2DOORNR" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPA2DISTRICT" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPA2CITY" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPA2ZIPCODE" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPA2STATECODE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="CPA2STATENAME" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="CPA2PHONENR" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="CPA2TAXOFFICE" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPA2FAXNR" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="CPA2TAXNR" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPA2CHAMBERNR" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPA2EMAIL" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CPA2CNTRYCODE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="CPA2CNTRY" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPA2CONTRACTNR" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CPA2CONTRACTDESC" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CPA2CONTRACTTYPE" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPA2CONTRACTDATE" Type="datetime" Nullable="false" />
+    <Property Name="HASCFC2CONTRACT" Type="int" Nullable="false" />
+    <Property Name="CFC2NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CFC2SURNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CFC2CONTRACTNR" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CFC2CONTRACTDESC" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CFC2CONTRACTTYPE" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CFC2CONTRACTDATE" Type="datetime" />
+    <Property Name="EBOOKHASTAXDETAIL" Type="int" Nullable="false" />
+    <Property Name="USEHSM" Type="int" Nullable="false" />
+    <Property Name="HSMSLOTID" Type="smallint" Nullable="false" />
+    <Property Name="HSMCERTSERIAL" Type="bigint" Nullable="false" />
+    <Property Name="HSMCERTLABEL" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="HSMDLL" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="HSMPASS" Type="nvarchar" MaxLength="65" Nullable="false" />
+    <Property Name="EBOOKBACKUPSVCADDRESS" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="EBOOKBACKUPSVCUSER" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EBOOKBACKUPSVCPASS" Type="nvarchar" MaxLength="109" Nullable="false" />
+    <Property Name="ETRADESMANUSER" Type="int" Nullable="false" />
+    <Property Name="EBOOKTRANSFERDATE" Type="datetime" />
+    <Property Name="EBOOKPERIOD" Type="int" Nullable="false" />
+    <Property Name="EBOOKSENDINGADDRESS" Type="nvarchar" MaxLength="120" Nullable="false" />
+    <Property Name="ERECONCILIATIONUSETYPE" Type="int" Nullable="false" />
+    <Property Name="EPRODUCERFIRM" Type="nvarchar" MaxLength="65" Nullable="false" />
+    <Property Name="RULESCRIPTSCONNADDRESS" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="USEPAPERINVOICE" Type="int" Nullable="false" />
+    <Property Name="LEDGERDECLARATIONUSER" Type="int" Nullable="false" />
+    <Property Name="LEDGERTYPE" Type="int" Nullable="false" />
+    <Property Name="DBSURL" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DBSAPIKEY" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="DBSAPISECRET" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="EARCHIVEPORTALUSER" Type="int" Nullable="false" />
+    <Property Name="PROPERTYSTATUS" Type="int" Nullable="false" />
+    <Property Name="REGOFCOMMERCE" Type="int" Nullable="false" />
+    <Property Name="WORKPLACETYPE" Type="int" Nullable="false" />
+    <Property Name="TE_RECSTATUS" Type="int" Nullable="false" />
+    <Property Name="TE_LABELS" Type="nvarchar" MaxLength="200" />
+    <Property Name="TE_SUBCOMPANY" Type="int" />
+    <Property Name="TE_WPIID" Type="int" />
+    <Property Name="TE_WFIID" Type="nvarchar" MaxLength="36" Nullable="false" />
+    <Property Name="TE_DOMAINID" Type="int" Nullable="false" />
+    <Property Name="TE_RIGHTS" Type="int" />
+    <Property Name="PEUSERNAME" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="PEPASSWORD" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="U_001_ANLYDIMENSIONS">
+    <Key>
+      <PropertyRef Name="LOGICALREF" />
+    </Key>
+    <Property Name="LOGICALREF" Type="int" Nullable="false" />
+    <Property Name="DIMTYPEREF" Type="int" Nullable="false" />
+    <Property Name="CODE" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="AUXCODE" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="BOSTATUS" Type="int" Nullable="false" />
+    <Property Name="SUBANLYDIMS" Type="int" Nullable="false" />
+    <Property Name="LEVELNR" Type="int" Nullable="false" />
+    <Property Name="UPPERANLYDIMREF" Type="int" Nullable="false" />
+    <Property Name="AUTHCODE" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="TE_RECSTATUS" Type="int" Nullable="false" />
+    <Property Name="TE_LABELS" Type="nvarchar" MaxLength="200" />
+    <Property Name="CREATEDBY" Type="int" />
+    <Property Name="CREATEDBYNAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="CREATEDON" Type="datetime" />
+    <Property Name="MODIFIEDBY" Type="int" />
+    <Property Name="MODIFIEDBYNAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="MODIFIEDON" Type="datetime" />
+    <Property Name="TE_SUBCOMPANY" Type="int" />
+    <Property Name="TE_WPIID" Type="int" />
+    <Property Name="TE_WFIID" Type="nvarchar" MaxLength="36" Nullable="false" />
+    <Property Name="TE_RIGHTS" Type="int" />
+  </EntityType>
+  <EntityType Name="U_001_ANLYDIMTYPES">
+    <Key>
+      <PropertyRef Name="LOGICALREF" />
+    </Key>
+    <Property Name="LOGICALREF" Type="int" Nullable="false" />
+    <Property Name="CODE" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="120" Nullable="false" />
+    <Property Name="AUXCODE" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="BOSTATUS" Type="int" Nullable="false" />
+    <Property Name="AUTHCODE" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="TE_RECSTATUS" Type="int" Nullable="false" />
+    <Property Name="TE_LABELS" Type="nvarchar" MaxLength="200" />
+    <Property Name="CREATEDBY" Type="int" />
+    <Property Name="CREATEDBYNAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="CREATEDON" Type="datetime" />
+    <Property Name="MODIFIEDBY" Type="int" />
+    <Property Name="MODIFIEDBYNAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="MODIFIEDON" Type="datetime" />
+    <Property Name="TE_SUBCOMPANY" Type="int" />
+    <Property Name="TE_WPIID" Type="int" />
+    <Property Name="TE_WFIID" Type="nvarchar" MaxLength="36" Nullable="false" />
+    <Property Name="TE_RIGHTS" Type="int" />
+  </EntityType>
+  <EntityType Name="U_001_ARPS">
+    <Key>
+      <PropertyRef Name="LOGICALREF" />
+    </Key>
+    <Property Name="LOGICALREF" Type="int" Nullable="false" />
+    <Property Name="BOSTATUS" Type="int" Nullable="false" />
+    <Property Name="CARDTYPE" Type="int" Nullable="false" />
+    <Property Name="CODE" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="SEARCHTEXT" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="AUXCODE" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="AUXCODE2" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="AUXCODE3" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="AUXCODE4" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="AUXCODE5" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="ADDRESS1" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ADDRESS2" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ADDRESSCODE" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="CITY" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="COUNTRY" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="POSTCODE" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="POSTBOX" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="POSTBOXDESC" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="POSTBOXPCAREA" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="POSTBOXCITY" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="CUSTOMERREG" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="CUSTOMERDIST" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="CONTACTTYPCODE" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="CUSTOMERTOUR" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="PRICERANKCODE" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="DELIVERYEXP" Type="int" Nullable="false" />
+    <Property Name="PHONENR1" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="PHONENR2" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="MOBILEPHONE" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="FAXNR" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="TAXNR" Type="nvarchar" MaxLength="21" Nullable="false" />
+    <Property Name="TAXOFFICE" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="INCHARGE" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DISCRATE" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="EXTENREF" Type="int" Nullable="false" />
+    <Property Name="PAYMENTREF" Type="int" Nullable="false" />
+    <Property Name="EMAIL" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="WEBADDRESS" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="LANGUAGENR" Type="int" Nullable="false" />
+    <Property Name="VATNR" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="BLOCKED" Type="int" Nullable="false" />
+    <Property Name="SHPTYPECODE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="SHPAGNCODE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="CURRENCYNR" Type="int" Nullable="false" />
+    <Property Name="EDINR" Type="nvarchar" MaxLength="24" Nullable="false" />
+    <Property Name="TRADINGGRP" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="PAYMENTPROC" Type="int" Nullable="false" />
+    <Property Name="CRATEDIFFPROC" Type="int" Nullable="false" />
+    <Property Name="PPGROUPCODE" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="PPGROUPREF" Type="int" Nullable="false" />
+    <Property Name="TAXOFFCODE" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="TOWNCODE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="TOWN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DISTRICTCODE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="DISTRICT" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CITYCODE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="COUNTRYCODE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="SUBSCRIBERSTAT" Type="int" Nullable="false" />
+    <Property Name="SUBSCRIBEREXT" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="AUTOPAIDBANK" Type="nvarchar" MaxLength="24" Nullable="false" />
+    <Property Name="PAYMENTTYPE" Type="int" Nullable="false" />
+    <Property Name="LASTSENDREMLEV" Type="int" Nullable="false" />
+    <Property Name="EXTACCESSFLAGS" Type="int" Nullable="false" />
+    <Property Name="STORECREDITCARDNR" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="ORDERFREQ" Type="int" Nullable="false" />
+    <Property Name="ORDERDAYS" Type="int" Nullable="false" />
+    <Property Name="SHIPMENTDAYS" Type="int" Nullable="false" />
+    <Property Name="LOGOID" Type="nvarchar" MaxLength="24" Nullable="false" />
+    <Property Name="LIDCONFIRMED" Type="int" Nullable="false" />
+    <Property Name="EXPREGNR" Type="nvarchar" MaxLength="24" Nullable="false" />
+    <Property Name="EXPDOCNR" Type="nvarchar" MaxLength="24" Nullable="false" />
+    <Property Name="EXPBUSTYPEREF" Type="int" Nullable="false" />
+    <Property Name="INVPRINTCNT" Type="int" Nullable="false" />
+    <Property Name="PIECEORDINFLICT" Type="int" Nullable="false" />
+    <Property Name="COLLECTINVOICING" Type="int" Nullable="false" />
+    <Property Name="EBUSDATASENDTYPE" Type="int" Nullable="false" />
+    <Property Name="INISTATUSFLAGS" Type="int" Nullable="false" />
+    <Property Name="SLSORDERSTATUS" Type="int" Nullable="false" />
+    <Property Name="SLSORDERPRICE" Type="int" Nullable="false" />
+    <Property Name="LTRSENDMETHOD" Type="int" Nullable="false" />
+    <Property Name="LTRSENDEMAIL" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="LTRSENDFAXNR" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="LTRSENDFORMAT" Type="int" Nullable="false" />
+    <Property Name="PARENTREF" Type="int" Nullable="false" />
+    <Property Name="GLPSTGROUPREF" Type="int" Nullable="false" />
+    <Property Name="OWNERORGUNITREF" Type="int" Nullable="false" />
+    <Property Name="CHAMBERNAME" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CHAMBERREGNO" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="POTENTIAL" Type="int" Nullable="false" />
+    <Property Name="APPRSTATUS" Type="int" Nullable="false" />
+    <Property Name="CONTRACTOR" Type="int" Nullable="false" />
+    <Property Name="OURCOMPANYCODE" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="REMINDFLAG" Type="int" Nullable="false" />
+    <Property Name="PRICEGRPREF" Type="int" Nullable="false" />
+    <Property Name="WARNINSLIPFLAG" Type="int" Nullable="false" />
+    <Property Name="PARTNERREF" Type="int" Nullable="false" />
+    <Property Name="INCOMETAXNR" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="DELDELAYREMINDFLAG" Type="int" Nullable="false" />
+    <Property Name="ISCENTRAL" Type="int" Nullable="false" />
+    <Property Name="HAVEINSURANCE" Type="int" Nullable="false" />
+    <Property Name="DISCOUNTSREF" Type="int" Nullable="false" />
+    <Property Name="SAORDFLG" Type="int" Nullable="false" />
+    <Property Name="SADISPFLG" Type="int" Nullable="false" />
+    <Property Name="SAINVFLG" Type="int" Nullable="false" />
+    <Property Name="SARTDISPFLG" Type="int" Nullable="false" />
+    <Property Name="SARTINVFLG" Type="int" Nullable="false" />
+    <Property Name="COLLECTORDERING" Type="int" Nullable="false" />
+    <Property Name="CREATEINVOICING" Type="int" Nullable="false" />
+    <Property Name="CRITSETREF" Type="int" Nullable="false" />
+    <Property Name="USAGEMDLPU" Type="int" Nullable="false" />
+    <Property Name="USAGEMDLSA" Type="int" Nullable="false" />
+    <Property Name="USAGEMDLFI" Type="int" Nullable="false" />
+    <Property Name="USAGEMDLIMP" Type="int" Nullable="false" />
+    <Property Name="USAGEMDLEXP" Type="int" Nullable="false" />
+    <Property Name="USAGEMDLTE" Type="int" Nullable="false" />
+    <Property Name="TRACKPAYMENTSCTRL" Type="int" Nullable="false" />
+    <Property Name="RISKSCTRLS" Type="int" Nullable="false" />
+    <Property Name="IDTCNO" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ISPERSCOMP" Type="int" Nullable="false" />
+    <Property Name="ISFOREIGN" Type="int" Nullable="false" />
+    <Property Name="EINVOICEUSER" Type="int" Nullable="false" />
+    <Property Name="PROFILEID" Type="int" Nullable="false" />
+    <Property Name="EINVOICETYPE" Type="int" Nullable="false" />
+    <Property Name="RISKGRPCODE" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="VATEXCEPTION" Type="int" Nullable="false" />
+    <Property Name="WITHHOLDINGEXCEPTION" Type="int" Nullable="false" />
+    <Property Name="PKURN" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="GBURN" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="PKURNFOREDISPATCH" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="GBURNFOREDISPATCH" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LABELINFO" Type="int" Nullable="false" />
+    <Property Name="SENDMOD" Type="int" Nullable="false" />
+    <Property Name="STATECODE" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="STATEDESC" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="BROKERCOMP" Type="int" Nullable="false" />
+    <Property Name="STATEREF" Type="int" Nullable="false" />
+    <Property Name="GSTID" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="ARPTYPE" Type="int" Nullable="false" />
+    <Property Name="TDSEXCEPTION" Type="int" Nullable="false" />
+    <Property Name="PAN" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="SURNAME" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="COMPSCHEMEREF" Type="int" Nullable="false" />
+    <Property Name="FACTORING" Type="int" Nullable="false" />
+    <Property Name="ESERVICESBEGINDATE" Type="datetime" Nullable="false" />
+    <Property Name="EDISPATCHUSER" Type="int" Nullable="false" />
+    <Property Name="EDISPATCHPROFILEID" Type="int" Nullable="false" />
+    <Property Name="EDISPATCHLABELINFO" Type="int" Nullable="false" />
+    <Property Name="EDISPATCHBEGINDATE" Type="datetime" Nullable="false" />
+    <Property Name="UIN" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="USEDASDISPATCH" Type="int" Nullable="false" />
+    <Property Name="REGTYPE" Type="int" Nullable="false" />
+    <Property Name="RETAILARPS" Type="int" Nullable="false" />
+    <Property Name="INTRATEREF" Type="int" Nullable="false" />
+    <Property Name="KEPMAIL" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="PERSONELCOSTS" Type="int" Nullable="false" />
+    <Property Name="APPROVALTRANSDEFREF" Type="int" Nullable="false" />
+    <Property Name="APPROVALTRANSSTATUS" Type="int" Nullable="false" />
+    <Property Name="USAGEMDLSC" Type="int" Nullable="false" />
+    <Property Name="PRIORITY" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="SUBCONTRACTING" Type="int" Nullable="false" />
+    <Property Name="SUBCORGUNITREF" Type="int" Nullable="false" />
+    <Property Name="INWHREF" Type="int" Nullable="false" />
+    <Property Name="OUTWHREF" Type="int" Nullable="false" />
+    <Property Name="AMOUNTDEPTIME" Type="bigint" Nullable="false" />
+    <Property Name="AMOUNTINDTIME" Type="bigint" Nullable="false" />
+    <Property Name="AADHAARNO" Type="nvarchar" MaxLength="14" Nullable="false" />
+    <Property Name="OWNERBIRTHDAY" Type="datetime" Nullable="false" />
+    <Property Name="AUTHCODE" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="TE_RECSTATUS" Type="int" Nullable="false" />
+    <Property Name="TE_LABELS" Type="nvarchar" MaxLength="200" />
+    <Property Name="CREATEDBY" Type="int" />
+    <Property Name="CREATEDBYNAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="CREATEDON" Type="datetime" />
+    <Property Name="MODIFIEDBY" Type="int" />
+    <Property Name="MODIFIEDBYNAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="MODIFIEDON" Type="datetime" />
+    <Property Name="TE_SUBCOMPANY" Type="int" />
+    <Property Name="TE_WPIID" Type="int" />
+    <Property Name="TE_WFIID" Type="nvarchar" MaxLength="36" Nullable="false" />
+    <Property Name="TE_RIGHTS" Type="int" />
+    <Property Name="RATETYPE" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="U_001_AUXCODES">
+    <Key>
+      <PropertyRef Name="LOGICALREF" />
+    </Key>
+    <Property Name="LOGICALREF" Type="int" Nullable="false" />
+    <Property Name="CODETYPE" Type="int" Nullable="false" />
+    <Property Name="AUXCODETYPE" Type="int" Nullable="false" />
+    <Property Name="AUXCODE" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="USAGETYPE" Type="int" Nullable="false" />
+    <Property Name="TE_RECSTATUS" Type="int" Nullable="false" />
+    <Property Name="TE_LABELS" Type="nvarchar" MaxLength="200" />
+    <Property Name="CREATEDBY" Type="int" />
+    <Property Name="CREATEDBYNAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="CREATEDON" Type="datetime" />
+    <Property Name="MODIFIEDBY" Type="int" />
+    <Property Name="MODIFIEDBYNAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="MODIFIEDON" Type="datetime" />
+    <Property Name="TE_SUBCOMPANY" Type="int" />
+    <Property Name="TE_WPIID" Type="int" />
+    <Property Name="TE_WFIID" Type="nvarchar" MaxLength="36" Nullable="false" />
+    <Property Name="TE_RIGHTS" Type="int" />
+  </EntityType>
+  <EntityType Name="U_001_ITEMS">
+    <Key>
+      <PropertyRef Name="LOGICALREF" />
+    </Key>
+    <Property Name="LOGICALREF" Type="int" Nullable="false" />
+    <Property Name="CLASSTYPE" Type="int" Nullable="false" />
+    <Property Name="CARDTYPE" Type="int" Nullable="false" />
+    <Property Name="CODE" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="DESCRIPTION2" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="DESCRIPTION3" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="DESCRIPTION4" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="GROUPCODE" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="SEARCHTEXT" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="AUXCODE" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="AUXCODE2" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="AUXCODE3" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="AUXCODE4" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="AUXCODE5" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="BOSTATUS" Type="int" Nullable="false" />
+    <Property Name="USAGEMDLPU" Type="int" Nullable="false" />
+    <Property Name="USAGEMDLSA" Type="int" Nullable="false" />
+    <Property Name="USAGEMDLMM" Type="int" Nullable="false" />
+    <Property Name="VATRATE" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="PAYMENTREF" Type="int" Nullable="false" />
+    <Property Name="TRACKTYPE" Type="int" Nullable="false" />
+    <Property Name="LOCTRACKING" Type="int" Nullable="false" />
+    <Property Name="TOOL" Type="int" Nullable="false" />
+    <Property Name="AUTOINCSL" Type="int" Nullable="false" />
+    <Property Name="DIVLOTSIZE" Type="int" Nullable="false" />
+    <Property Name="SHELFLIFE" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="SHELFLIFETYPE" Type="int" Nullable="false" />
+    <Property Name="DOMINANTREF1" Type="int" Nullable="false" />
+    <Property Name="DOMINANTREF2" Type="int" Nullable="false" />
+    <Property Name="DOMINANTREF3" Type="int" Nullable="false" />
+    <Property Name="DOMINANTREF4" Type="int" Nullable="false" />
+    <Property Name="DOMINANTREF5" Type="int" Nullable="false" />
+    <Property Name="DOMINANTREF6" Type="int" Nullable="false" />
+    <Property Name="DOMINANTREF7" Type="int" Nullable="false" />
+    <Property Name="DOMINANTREF8" Type="int" Nullable="false" />
+    <Property Name="DOMINANTREF9" Type="int" Nullable="false" />
+    <Property Name="DOMINANTREF10" Type="int" Nullable="false" />
+    <Property Name="DOMINANTREF11" Type="int" Nullable="false" />
+    <Property Name="DOMINANTREF12" Type="int" Nullable="false" />
+    <Property Name="DOMINANTREF13" Type="int" Nullable="false" />
+    <Property Name="DOMINANTREF14" Type="int" Nullable="false" />
+    <Property Name="ECONOMYASSETTYPEREF" Type="int" Nullable="false" />
+    <Property Name="ECONOMYASSETTYPEREF2" Type="int" Nullable="false" />
+    <Property Name="DEPRTYPE" Type="int" Nullable="false" />
+    <Property Name="DEPRTYPE2" Type="int" Nullable="false" />
+    <Property Name="DEPRRATE" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="DEPRRATE2" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="DEPRDUR" Type="int" Nullable="false" />
+    <Property Name="DEPRDUR2" Type="int" Nullable="false" />
+    <Property Name="REVALFLAG" Type="int" Nullable="false" />
+    <Property Name="REVALFLAG2" Type="int" Nullable="false" />
+    <Property Name="REVALDEPRFLAG" Type="int" Nullable="false" />
+    <Property Name="REVALDEPRFLAG2" Type="int" Nullable="false" />
+    <Property Name="PARTDEPR" Type="int" Nullable="false" />
+    <Property Name="PARTDEPR2" Type="int" Nullable="false" />
+    <Property Name="SALVAGEVAL" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="UOMSETREF" Type="int" Nullable="false" />
+    <Property Name="QCCSETREF" Type="int" Nullable="false" />
+    <Property Name="DISTQUANTITY" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="DISTLOTUNITS" Type="int" Nullable="false" />
+    <Property Name="COMBLOTUNITS" Type="int" Nullable="false" />
+    <Property Name="DISTPOINT" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="CAMPPOINT" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="ISONR" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="GROUPNR" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="GROUPDESC" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="PRODCOUNTRYCODE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="PRODCOUNTRY" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ADDTAXREF" Type="int" Nullable="false" />
+    <Property Name="QPRODQTY" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="QPRODUOM" Type="int" Nullable="false" />
+    <Property Name="QPRODSRCWH" Type="int" Nullable="false" />
+    <Property Name="EXTACCESSFLAGS" Type="int" Nullable="false" />
+    <Property Name="PACKET" Type="int" Nullable="false" />
+    <Property Name="SALVAGEVAL2" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="SELLVATRATE" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="RETURNVATRATE" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="LOGOID" Type="nvarchar" MaxLength="24" Nullable="false" />
+    <Property Name="LIDCONFIRMED" Type="int" Nullable="false" />
+    <Property Name="GTIPREF" Type="int" Nullable="false" />
+    <Property Name="EXPCTGNR" Type="nvarchar" MaxLength="24" Nullable="false" />
+    <Property Name="B2CCODE" Type="nvarchar" MaxLength="24" Nullable="false" />
+    <Property Name="BRANDREF" Type="int" Nullable="false" />
+    <Property Name="BRANDMODELREF" Type="int" Nullable="false" />
+    <Property Name="AVGWHDUR" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="EXTCARDFLAGS" Type="int" Nullable="false" />
+    <Property Name="MINORDQUANTITY" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="FREIGHTPLACE" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FRGTYPECODE1" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="FRGTYPECODE2" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="FRGTYPECODE3" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="FRGTYPECODE4" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="FRGTYPECODE5" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="FRGTYPECODE6" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="FRGTYPECODE7" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="FRGTYPECODE8" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="FRGTYPECODE9" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="FRGTYPECODE10" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="FRGTYPECODE11" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="FRGTYPECODE12" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="GLPSTGROUPREF" Type="int" Nullable="false" />
+    <Property Name="PERCLOSEDATE" Type="datetime" />
+    <Property Name="ASSETCATEGORY" Type="int" Nullable="false" />
+    <Property Name="STATECODE" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="STATENAME" Type="nvarchar" MaxLength="41" Nullable="false" />
+    <Property Name="EXPCATEGORY" Type="nvarchar" MaxLength="24" Nullable="false" />
+    <Property Name="TEXTINCENG" Type="int" Nullable="false" />
+    <Property Name="EANBARCODE" Type="nvarchar" MaxLength="24" Nullable="false" />
+    <Property Name="LOSTFACTOR" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="IMPORTEXPENSE" Type="int" Nullable="false" />
+    <Property Name="USAGEMDLCA" Type="int" Nullable="false" />
+    <Property Name="TRANSMETHOD" Type="int" Nullable="false" />
+    <Property Name="ASSORTITEMREF" Type="int" Nullable="false" />
+    <Property Name="DISCOUNTCHECK" Type="int" Nullable="false" />
+    <Property Name="COSTTYPE" Type="int" Nullable="false" />
+    <Property Name="COSTTYPE2" Type="int" Nullable="false" />
+    <Property Name="PRODUCERCODE" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="PACKAMOUNT" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="CUSTOMSNR" Type="nvarchar" MaxLength="24" Nullable="false" />
+    <Property Name="SHIPMENTTYPE" Type="int" Nullable="false" />
+    <Property Name="LABELFLAG" Type="int" Nullable="false" />
+    <Property Name="LOTRANGEFLAG" Type="int" Nullable="false" />
+    <Property Name="GUARANTYPERIOD" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="GUARANTYPERIODTYPE" Type="int" Nullable="false" />
+    <Property Name="CONFIGURABLE" Type="int" Nullable="false" />
+    <Property Name="QMCHECK" Type="int" Nullable="false" />
+    <Property Name="AFFECTCOST" Type="int" Nullable="false" />
+    <Property Name="DISTTYPE" Type="int" Nullable="false" />
+    <Property Name="CANDEDUCT" Type="int" Nullable="false" />
+    <Property Name="RETAILSALESVAT" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="RETAILRETURNVAT" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="VATUSEDBYITEMS" Type="int" Nullable="false" />
+    <Property Name="SADEDUCTIONPART1" Type="int" Nullable="false" />
+    <Property Name="SADEDUCTIONPART2" Type="int" Nullable="false" />
+    <Property Name="PUDEDUCTIONPART1" Type="int" Nullable="false" />
+    <Property Name="PUDEDUCTIONPART2" Type="int" Nullable="false" />
+    <Property Name="USAGEMDLSS" Type="int" Nullable="false" />
+    <Property Name="DEDUCTIONCODE" Type="int" Nullable="false" />
+    <Property Name="PURCHDEDUCTIONCODE" Type="int" Nullable="false" />
+    <Property Name="FOREIGNTAXREF" Type="int" Nullable="false" />
+    <Property Name="SERVICETAXREF" Type="int" Nullable="false" />
+    <Property Name="CESS" Type="int" Nullable="false" />
+    <Property Name="CESSRATE" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="AVGWHDURUPDDATE" Type="datetime" />
+    <Property Name="SACREF" Type="int" Nullable="false" />
+    <Property Name="STOPPAGERATE" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="CPAREF" Type="int" Nullable="false" />
+    <Property Name="USAGEMDLEA" Type="int" Nullable="false" />
+    <Property Name="TRANSPORTVEHICLEEXPENSE" Type="int" Nullable="false" />
+    <Property Name="KKEGAPPLICATIONTYPE" Type="int" Nullable="false" />
+    <Property Name="MAXRETAILPRICECHECK" Type="int" Nullable="false" />
+    <Property Name="SUBTYPE" Type="int" Nullable="false" />
+    <Property Name="USAGEMDLDE" Type="int" Nullable="false" />
+    <Property Name="ACCOUNTINGMETHOD" Type="int" Nullable="false" />
+    <Property Name="APPROVALTRANSDEFREF" Type="int" Nullable="false" />
+    <Property Name="APPROVALTRANSSTATUS" Type="int" Nullable="false" />
+    <Property Name="MULTIADDTAXREF" Type="int" Nullable="false" />
+    <Property Name="USAGEMDLSC" Type="int" Nullable="false" />
+    <Property Name="AUTHCODE" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="TE_RECSTATUS" Type="int" Nullable="false" />
+    <Property Name="TE_LABELS" Type="nvarchar" MaxLength="200" />
+    <Property Name="CREATEDBY" Type="int" />
+    <Property Name="CREATEDBYNAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="CREATEDON" Type="datetime" />
+    <Property Name="MODIFIEDBY" Type="int" />
+    <Property Name="MODIFIEDBYNAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="MODIFIEDON" Type="datetime" />
+    <Property Name="TE_SUBCOMPANY" Type="int" />
+    <Property Name="TE_WPIID" Type="int" />
+    <Property Name="TE_WFIID" Type="nvarchar" MaxLength="36" Nullable="false" />
+    <Property Name="TE_RIGHTS" Type="int" />
+    <Property Name="MARKETPLACEUSAGE" Type="int" Nullable="false" />
+    <Property Name="PRODUCTNAME" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="PRODUCTTITLE" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="PRODUCTDESCRIPTION" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="BARCODEGTIN" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="PURCHASEPRICE" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="SALEPRICE" Type="numeric" Precision="28" Scale="8" Nullable="false" />
+    <Property Name="MARKETPLACEID" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="JPLATFORMAModelStoreContainer">
+    <EntitySet Name="S_ORGUNITS" EntityType="Self.S_ORGUNITS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="U_001_ANLYDIMENSIONS" EntityType="Self.U_001_ANLYDIMENSIONS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="U_001_ANLYDIMTYPES" EntityType="Self.U_001_ANLYDIMTYPES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="U_001_ARPS" EntityType="Self.U_001_ARPS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="U_001_AUXCODES" EntityType="Self.U_001_AUXCODES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="U_001_ITEMS" EntityType="Self.U_001_ITEMS" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
